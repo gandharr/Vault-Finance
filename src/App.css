@@ -1321,14 +1321,35 @@ textarea {
     padding-top: 12px;
   }
 
+  .app-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 12px;
+  }
+
+  .brand-block {
+    min-width: 0;
+  }
+
+  .brand-title {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
   .header-controls {
     flex-direction: column;
     align-items: stretch;
+    width: 100%;
   }
 
   .header-role-chip,
   .header-controls > button {
     width: 100%;
+  }
+
+  .header-role-chip,
+  .control-chip {
+    min-width: 0;
   }
 
   .header-controls > .ghost-button {
@@ -1398,7 +1419,11 @@ textarea {
 
   .transaction-toolbar,
   .form-grid,
-  .mini-metrics {
+  .mini-metrics,
+  .summary-grid,
+  .analysis-grid,
+  .insight-grid,
+  .chart-summary-strip {
     grid-template-columns: 1fr;
   }
 
@@ -1406,9 +1431,52 @@ textarea {
     grid-template-columns: 1fr;
   }
 
+  .transaction-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    align-items: start;
+  }
+
+  .transaction-meta,
+  .row-actions {
+    justify-items: start;
+    justify-content: flex-start;
+  }
+
+  .row-actions {
+    width: 100%;
+  }
+
+  .row-actions button {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 0;
+  }
+
   .sparkline-caption,
   .panel-heading {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .compact-btn {
+    font-size: 0.84rem;
+    padding-inline: 0.6rem;
+  }
+
+  .panel,
+  .hero-panel,
+  .summary-card,
+  .chart-frame,
+  .chart-summary-strip div,
+  .chart-month-card,
+  .transaction-row {
+    padding-left: 12px;
+    padding-right: 12px;
   }
 }
