@@ -7,6 +7,16 @@ Vault Finance is a frontend-only finance dashboard built with React + TypeScript
 - Repository: https://github.com/gandharr/Vault-Finance
 - Deployment: https://gandharr.github.io/Vault-Finance/
 
+## Screenshots
+
+### Desktop View
+
+![Vault Finance Dashboard - Desktop](public/screenshots/dashboard-desktop.png)
+
+### Mobile View
+
+![Vault Finance Dashboard - Mobile](public/screenshots/dashboard-mobile.png)
+
 ## Assignment Context
 
 This submission is intentionally designed to match the brief:
@@ -44,6 +54,7 @@ This submission is intentionally designed to match the brief:
 - src/App.css: visual system, responsive layout, motion, component-level styling
 - src/index.css: theme variables, base styles, typography, global surface/background definitions
 - public/: static assets (favicon/icons)
+- public/screenshots/: README screenshots for desktop and mobile preview
 
 ## Setup and Run
 
