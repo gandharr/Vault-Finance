@@ -268,9 +268,14 @@ function App() {
 
   const balanceSeries = trendData.map((entry) => entry.balance)
   const linePoints = buildLinePoints(balanceSeries)
-  const sparklinePoints = buildSparklinePoints(balanceSeries)
-  const sparklineAreaPath = buildSparklineAreaPath(balanceSeries)
   const sparklineDelta = monthComparison.currentNet - monthComparison.previousNet
+  const currentTrendPoint = trendData.at(-1) ?? null
+  const previousTrendPoint = trendData.at(-2) ?? null
+  const currentMonthIncome = currentTrendPoint?.income ?? 0
+  const currentMonthExpense = currentTrendPoint?.expense ?? 0
+  const monthFlowMax = Math.max(currentMonthIncome, currentMonthExpense, 1)
+  const currentIncomeWidth = Math.round((currentMonthIncome / monthFlowMax) * 100)
+  const currentExpenseWidth = Math.round((currentMonthExpense / monthFlowMax) * 100)
   const monthComparisonDelta = monthComparison.currentNet - monthComparison.previousNet
   const currentMonthLabel = trendData.at(-1)?.label ?? 'Current'
   const previousMonthLabel = trendData.at(-2)?.label ?? 'Previous'
@@ -723,19 +728,27 @@ function App() {
                 {sparklineDelta >= 0 ? '+' : '-'} {formatCurrency(Math.abs(sparklineDelta))}
               </strong>
             </div>
-            <svg viewBox="0 0 360 120" role="img" aria-hidden="true">
-              <defs>
-                <linearGradient id="sparklineFill" x1="0" x2="0" y1="0" y2="1">
-                  <stop offset="0%" stopColor="var(--accent-strong)" stopOpacity="0.35" />
-                  <stop offset="100%" stopColor="var(--accent-strong)" stopOpacity="0" />
-                </linearGradient>
-              </defs>
-              <path d={sparklineAreaPath} fill="url(#sparklineFill)" />
-              <polyline points={sparklinePoints} />
-            </svg>
+            <div className="sparkline-bars" role="img" aria-label="Current month income and expense comparison">
+              <div className="sparkline-row">
+                <span>Income</span>
+                <div className="sparkline-track">
+                  <div className="sparkline-fill income" style={{ width: `${currentIncomeWidth}%` }} />
+                </div>
+                <strong className="positive">{formatCurrency(currentMonthIncome)}</strong>
+              </div>
+              <div className="sparkline-row">
+                <span>Expense</span>
+                <div className="sparkline-track">
+                  <div className="sparkline-fill expense" style={{ width: `${currentExpenseWidth}%` }} />
+                </div>
+                <strong className="negative">{formatCurrency(currentMonthExpense)}</strong>
+              </div>
+            </div>
             <div className="sparkline-caption">
-              <span>Cumulative balance path</span>
-              <strong>{trendData.length} monthly checkpoints</strong>
+              <span>{currentMonthLabel} in vs out</span>
+              <strong>
+                Compared with {previousTrendPoint?.label ?? 'previous month'}
+              </strong>
             </div>
           </div>
         </div>
@@ -1384,59 +1397,6 @@ function buildLinePoints(values: number[]) {
       return `${x.toFixed(1)},${y.toFixed(1)}`
     })
     .join(' ')
-}
-
-function buildSparklinePoints(values: number[]) {
-  if (values.length === 0) {
-    return ''
-  }
-
-  const maxValue = Math.max(...values)
-  const minValue = Math.min(...values)
-  const width = 360
-  const height = 120
-  const padding = 10
-
-  return values
-    .map((value, index) => {
-      const denominator = values.length > 1 ? values.length - 1 : 1
-      const x = padding + (index * (width - padding * 2)) / denominator
-      const ratio = maxValue === minValue ? 0.5 : (value - minValue) / (maxValue - minValue)
-      const y = height - padding - ratio * (height - padding * 2)
-      return `${x.toFixed(1)},${y.toFixed(1)}`
-    })
-    .join(' ')
-}
-
-function buildSparklineAreaPath(values: number[]) {
-  if (values.length === 0) {
-    return ''
-  }
-
-  const width = 360
-  const height = 120
-  const padding = 10
-  const maxValue = Math.max(...values)
-  const minValue = Math.min(...values)
-  const denominator = values.length > 1 ? values.length - 1 : 1
-
-  const points = values.map((value, index) => {
-    const x = padding + (index * (width - padding * 2)) / denominator
-    const ratio = maxValue === minValue ? 0.5 : (value - minValue) / (maxValue - minValue)
-    const y = height - padding - ratio * (height - padding * 2)
-    return { x, y }
-  })
-
-  const firstPoint = points[0]
-  const lastPoint = points[points.length - 1]
-
-  return [
-    `M ${firstPoint.x.toFixed(1)} ${height - padding}`,
-    `L ${firstPoint.x.toFixed(1)} ${firstPoint.y.toFixed(1)}`,
-    ...points.slice(1).map((point) => `L ${point.x.toFixed(1)} ${point.y.toFixed(1)}`),
-    `L ${lastPoint.x.toFixed(1)} ${height - padding}`,
-    'Z',
-  ].join(' ')
 }
 
 function buildTrendDotPosition(
