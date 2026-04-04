@@ -280,10 +280,10 @@ function App() {
   const currentMonthLabel = trendData.at(-1)?.label ?? 'Current'
   const previousMonthLabel = trendData.at(-2)?.label ?? 'Previous'
   const trendCheckpointCount = trendData.length
-  const monthComparisonDeltaPercent =
+  const monthComparisonDeltaMultiple =
     monthComparison.previousNet === 0
       ? null
-      : Math.round((Math.abs(monthComparisonDelta) / Math.abs(monthComparison.previousNet)) * 100)
+      : (Math.abs(monthComparison.currentNet) / Math.abs(monthComparison.previousNet)).toFixed(1)
   const latestTrendPoint = trendData.at(-1) ?? null
   const highestExpensePoint = useMemo(() => {
     if (trendData.length === 0) {
@@ -863,8 +863,8 @@ function App() {
                   </div>
                   <p className={monthComparisonDelta >= 0 ? 'positive' : 'negative'}>
                     {monthComparisonDelta >= 0 ? 'Up' : 'Down'} by {formatCurrency(Math.abs(monthComparisonDelta))}
-                    {monthComparisonDeltaPercent !== null
-                      ? ` (${monthComparisonDeltaPercent}% vs ${previousMonthLabel})`
+                    {monthComparisonDeltaMultiple !== null
+                      ? ` (${monthComparisonDeltaMultiple}x vs ${previousMonthLabel})`
                       : ''}
                   </p>
                 </div>
