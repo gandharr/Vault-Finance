@@ -279,6 +279,7 @@ function App() {
   const monthComparisonDelta = monthComparison.currentNet - monthComparison.previousNet
   const currentMonthLabel = trendData.at(-1)?.label ?? 'Current'
   const previousMonthLabel = trendData.at(-2)?.label ?? 'Previous'
+  const trendCheckpointCount = trendData.length
   const monthComparisonDeltaPercent =
     monthComparison.previousNet === 0
       ? null
@@ -787,7 +788,11 @@ function App() {
                   : 'This line tracks cumulative balance movement over time. Recent points indicate a softer trajectory.'}
               </p>
             </div>
-            <span className="panel-chip">Last 4 months</span>
+            <span className="panel-chip">
+              {trendCheckpointCount > 0
+                ? `Last ${trendCheckpointCount} month${trendCheckpointCount > 1 ? 's' : ''}`
+                : 'No monthly data'}
+            </span>
           </div>
 
           <div className="chart-frame line-chart-frame">
