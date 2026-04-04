@@ -271,6 +271,13 @@ function App() {
   const sparklinePoints = buildSparklinePoints(balanceSeries)
   const sparklineAreaPath = buildSparklineAreaPath(balanceSeries)
   const sparklineDelta = monthComparison.currentNet - monthComparison.previousNet
+  const monthComparisonDelta = monthComparison.currentNet - monthComparison.previousNet
+  const currentMonthLabel = trendData.at(-1)?.label ?? 'Current'
+  const previousMonthLabel = trendData.at(-2)?.label ?? 'Previous'
+  const monthComparisonDeltaPercent =
+    monthComparison.previousNet === 0
+      ? null
+      : Math.round((Math.abs(monthComparisonDelta) / Math.abs(monthComparison.previousNet)) * 100)
   const latestTrendPoint = trendData.at(-1) ?? null
   const highestExpensePoint = useMemo(() => {
     if (trendData.length === 0) {
@@ -711,7 +718,7 @@ function App() {
 
           <div className="sparkline-card" aria-label="Balance trend preview">
             <div className="sparkline-meta">
-              <span>Month-over-month</span>
+              <span>Net change vs previous month</span>
               <strong className={sparklineDelta >= 0 ? 'positive' : 'negative'}>
                 {sparklineDelta >= 0 ? '+' : '-'} {formatCurrency(Math.abs(sparklineDelta))}
               </strong>
@@ -727,7 +734,7 @@ function App() {
               <polyline points={sparklinePoints} />
             </svg>
             <div className="sparkline-caption">
-              <span>Balance trend</span>
+              <span>Cumulative balance path</span>
               <strong>{trendData.length} monthly checkpoints</strong>
             </div>
           </div>
@@ -760,11 +767,11 @@ function App() {
           <div className="panel-heading chart-heading">
             <div className="chart-heading-copy">
               <span className="eyebrow">Time-based visualization</span>
-              <h2>Balance trend</h2>
+              <h2>Balance trend (cumulative)</h2>
               <p>
                 {positiveChange
-                  ? 'The net position is moving upward. Hover a point to inspect the month and its biggest expense.'
-                  : 'The net position softened recently. Hover a point to inspect the month and its biggest expense.'}
+                  ? 'This line tracks cumulative balance movement over time. Use it to see trajectory and inflection points.'
+                  : 'This line tracks cumulative balance movement over time. Recent points indicate a softer trajectory.'}
               </p>
             </div>
             <span className="panel-chip">Last 4 months</span>
@@ -820,22 +827,28 @@ function App() {
                     </strong>
                   </div>
                 </div>
-                <div className="chart-month-grid" aria-label="Monthly snapshots">
-                  {trendData.map((entry) => {
-                    const monthNet = entry.income - entry.expense
-
-                    return (
-                      <article className="chart-month-card" key={`snapshot-${entry.label}`}>
-                        <span>{entry.label}</span>
-                        <strong className={monthNet >= 0 ? 'positive' : 'negative'}>
-                          {monthNet >= 0 ? '+' : '-'} {formatCurrency(Math.abs(monthNet))}
-                        </strong>
-                        <p>
-                          In {formatCurrency(entry.income)} · Out {formatCurrency(entry.expense)}
-                        </p>
-                      </article>
-                    )
-                  })}
+                <div className="month-compare-card" aria-label="Month-over-month net comparison">
+                  <span>Month-over-month net change</span>
+                  <div className="month-compare-grid">
+                    <article>
+                      <p>{previousMonthLabel}</p>
+                      <strong className={monthComparison.previousNet >= 0 ? 'positive' : 'negative'}>
+                        {formatCurrency(monthComparison.previousNet)}
+                      </strong>
+                    </article>
+                    <article>
+                      <p>{currentMonthLabel}</p>
+                      <strong className={monthComparison.currentNet >= 0 ? 'positive' : 'negative'}>
+                        {formatCurrency(monthComparison.currentNet)}
+                      </strong>
+                    </article>
+                  </div>
+                  <p className={monthComparisonDelta >= 0 ? 'positive' : 'negative'}>
+                    {monthComparisonDelta >= 0 ? 'Up' : 'Down'} by {formatCurrency(Math.abs(monthComparisonDelta))}
+                    {monthComparisonDeltaPercent !== null
+                      ? ` (${monthComparisonDeltaPercent}% vs ${previousMonthLabel})`
+                      : ''}
+                  </p>
                 </div>
               </>
             ) : (
@@ -899,8 +912,8 @@ function App() {
               note={insights.highestCategoryNote}
             />
             <InsightRow
-              label="Monthly comparison"
-              value={`${formatCurrency(monthComparison.currentNet)} vs ${formatCurrency(monthComparison.previousNet).replace('-', '- ')}`}
+              label="Month-over-month net change"
+              value={`${currentMonthLabel}: ${formatCurrency(monthComparison.currentNet)} vs ${previousMonthLabel}: ${formatCurrency(monthComparison.previousNet).replace('-', '- ')}`}
               note={monthComparison.summary}
             />
             <InsightRow

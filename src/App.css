@@ -857,6 +857,60 @@ textarea {
   font-weight: 600;
 }
 
+.month-compare-card {
+  margin-top: 10px;
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 12px 14px;
+  background: linear-gradient(180deg, var(--surface-high), rgba(255, 255, 255, 0.01));
+  display: grid;
+  gap: 10px;
+}
+
+.month-compare-card > span {
+  color: var(--text-muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.month-compare-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.month-compare-grid article {
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 10px;
+  background: var(--surface-soft);
+  display: grid;
+  gap: 4px;
+}
+
+.month-compare-grid p,
+.month-compare-card p {
+  margin: 0;
+}
+
+.month-compare-grid p {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.month-compare-grid strong {
+  font-size: 0.98rem;
+  line-height: 1.2;
+}
+
+.month-compare-card > p {
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
 .chart-month-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1460,7 +1514,8 @@ textarea {
   .summary-grid,
   .analysis-grid,
   .insight-grid,
-  .chart-summary-strip {
+  .chart-summary-strip,
+  .month-compare-grid {
     grid-template-columns: 1fr;
   }
 
