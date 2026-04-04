@@ -1361,6 +1361,7 @@ textarea {
     flex-direction: column;
     align-items: stretch;
     width: 100%;
+    gap: 10px;
   }
 
   .header-role-chip,
@@ -1375,6 +1376,10 @@ textarea {
 
   .header-controls > .ghost-button {
     justify-self: auto;
+    min-height: 42px;
+    border: 1px solid var(--border-strong);
+    background: var(--surface-soft);
+    font-weight: 600;
   }
 
   .settings-drawer {
@@ -1407,6 +1412,11 @@ textarea {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     align-items: stretch;
     gap: 8px;
+  }
+
+  .auth-actions .ghost-button,
+  .auth-actions .primary-button {
+    min-height: 42px;
   }
 
   .auth-actions button,
@@ -1482,7 +1492,7 @@ textarea {
 
 @media (max-width: 480px) {
   .auth-actions {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .compact-btn {
