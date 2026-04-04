@@ -911,6 +911,13 @@ textarea {
   gap: 10px;
 }
 
+.month-compare-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
 .month-compare-card > span {
   color: var(--text-muted);
   font-size: 0.74rem;
@@ -950,9 +957,10 @@ textarea {
   line-height: 1.2;
 }
 
-.month-compare-card > p {
+.month-compare-note {
   font-size: 0.84rem;
   font-weight: 600;
+  color: var(--text-muted);
 }
 
 .chart-month-grid {
@@ -1435,11 +1443,17 @@ textarea {
     gap: 8px;
   }
 
-  .month-compare-card > span,
+  .month-compare-head,
   .month-compare-card > p,
   .month-compare-grid p,
   .month-compare-grid strong {
     text-align: left;
+  }
+
+  .month-compare-head {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 4px;
   }
 
   .month-compare-grid {
