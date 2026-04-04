@@ -5,6 +5,7 @@ Vault Finance is a frontend-only finance dashboard built with React + TypeScript
 ## Demo Links
 
 - Repository: https://github.com/gandharr/Vault-Finance
+- Deployment: https://gandharr.github.io/Vault-Finance/
 
 ## Assignment Context
 
@@ -75,6 +76,15 @@ Preview production build locally:
 ```bash
 npm run preview
 ```
+
+## Deployment (GitHub Pages)
+
+- Live URL: https://gandharr.github.io/Vault-Finance/
+- Deployment is automated through GitHub Actions on every push to `main`
+- Workflow file: `.github/workflows/deploy-pages.yml`
+- Vite base path is configured in `vite.config.ts` as `/Vault-Finance/` for project-site routing
+
+If the site does not update immediately after pushing, check the Actions tab in GitHub and wait a few minutes for the workflow to complete.
 
 ## Functional Walkthrough
 
