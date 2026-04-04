@@ -1315,6 +1315,27 @@ textarea {
   }
 }
 
+@media (max-width: 1024px) {
+  .summary-grid,
+  .analysis-grid,
+  .insight-grid,
+  .chart-summary-strip,
+  .chart-month-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .transaction-row {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .transaction-meta,
+  .row-actions {
+    justify-items: start;
+    justify-content: flex-start;
+  }
+}
+
 @media (max-width: 720px) {
   .dashboard-shell {
     width: min(100%, calc(100% - 20px));

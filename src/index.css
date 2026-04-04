@@ -84,6 +84,7 @@ body {
   min-height: 100vh;
   background: var(--bg-overlay), var(--bg);
   color: var(--text-strong);
+  overflow-x: hidden;
 }
 
 body::before {
