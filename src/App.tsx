@@ -1155,8 +1155,8 @@ function App() {
       </section>
 
       <footer className="footer-note">
-        <span>{statusMessage}</span>
-        <span className="footer-credit">All rights reserved. Copyright 2026 Gandhar Dhore.</span>
+        <span className="footer-status">{statusMessage}</span>
+        <span className="footer-credit">© 2026 Gandhar Dhore. All rights reserved.</span>
       </footer>
     </main>
   )
