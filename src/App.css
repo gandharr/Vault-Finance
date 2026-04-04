@@ -1135,8 +1135,13 @@ textarea {
 }
 
 .transaction-toolbar label span {
+  display: block;
   min-height: 1.05rem;
+  margin-bottom: 2px;
   line-height: 1.2;
+  color: var(--accent-strong);
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
 }
 
 .transaction-toolbar input,
