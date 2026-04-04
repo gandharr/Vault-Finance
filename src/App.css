@@ -1128,25 +1128,35 @@ textarea {
   grid-template-columns: 2fr repeat(3, minmax(120px, 1fr));
   gap: 12px;
   align-items: end;
+  padding: 14px;
+  border: 1px solid var(--border-soft);
+  border-radius: 12px;
+  background: var(--surface-high);
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
 }
 
 .transaction-toolbar label {
   min-width: 0;
+  display: grid;
+  gap: 6px;
+  align-content: end;
 }
 
 .transaction-toolbar label span {
   display: block;
   min-height: 1.05rem;
-  margin-bottom: 2px;
   line-height: 1.2;
-  color: var(--accent-strong);
-  font-size: 0.8rem;
-  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .transaction-toolbar input,
 .transaction-toolbar select {
-  min-height: 52px;
+  min-height: 50px;
+  border-radius: 10px;
 }
 
 .search-field {
