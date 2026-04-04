@@ -781,7 +781,7 @@ function App() {
           <div className="panel-heading chart-heading">
             <div className="chart-heading-copy">
               <span className="eyebrow">Time-based visualization</span>
-              <h2>Balance trend (cumulative)</h2>
+              <h2>Balance trend</h2>
               <p>
                 {positiveChange
                   ? 'This line tracks cumulative balance movement over time. Use it to see trajectory and inflection points.'
