@@ -1430,6 +1430,26 @@ textarea {
     gap: 12px;
   }
 
+  .month-compare-card {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .month-compare-card > span,
+  .month-compare-card > p,
+  .month-compare-grid p,
+  .month-compare-grid strong {
+    text-align: left;
+  }
+
+  .month-compare-grid {
+    gap: 8px;
+  }
+
+  .month-compare-grid article {
+    padding: 10px 12px;
+  }
+
   .transaction-meta,
   .row-actions {
     justify-items: start;
