@@ -1372,6 +1372,7 @@ textarea {
   .role-select {
     text-align: center;
     text-align-last: center;
+    padding-left: 2.1rem;
   }
 
   .header-role-chip,
