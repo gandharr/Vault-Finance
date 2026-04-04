@@ -1126,6 +1126,21 @@ textarea {
   display: grid;
   grid-template-columns: 2fr repeat(3, minmax(120px, 1fr));
   gap: 12px;
+  align-items: end;
+}
+
+.transaction-toolbar label {
+  min-width: 0;
+}
+
+.transaction-toolbar label span {
+  min-height: 1.05rem;
+  line-height: 1.2;
+}
+
+.transaction-toolbar input,
+.transaction-toolbar select {
+  min-height: 52px;
 }
 
 .search-field {
