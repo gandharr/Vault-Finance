@@ -1369,6 +1369,11 @@ textarea {
     width: 100%;
   }
 
+  .role-select {
+    text-align: center;
+    text-align-last: center;
+  }
+
   .header-role-chip,
   .control-chip {
     min-width: 0;
