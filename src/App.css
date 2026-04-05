@@ -257,7 +257,7 @@
   font-weight: 700;
 }
 
-.auth-close-btn {
+.ghost-button.subtle.auth-close-btn {
   min-height: 38px;
   min-width: 38px;
   width: 38px;
@@ -278,20 +278,21 @@
     transform 180ms ease;
 }
 
-.auth-close-btn:hover {
+.ghost-button.subtle.auth-close-btn:hover {
   color: var(--text-strong);
   border-color: var(--accent-strong);
+  background: linear-gradient(180deg, var(--surface-high), var(--surface-soft));
   box-shadow: 0 6px 14px rgba(15, 23, 42, 0.14);
   transform: translateY(-1px);
 }
 
-.auth-close-btn svg {
+.ghost-button.subtle.auth-close-btn svg {
   width: 18px;
   height: 18px;
   display: block;
 }
 
-.auth-close-btn path {
+.ghost-button.subtle.auth-close-btn path {
   stroke: currentColor;
   stroke-width: 2.4;
   stroke-linecap: round;
@@ -494,6 +495,41 @@ textarea {
 
 .ghost-button.subtle:hover {
   background: var(--button-soft);
+}
+
+/* Keep the auth modal close control visually identical across breakpoints. */
+.auth-modal .settings-head .ghost-button.subtle.auth-close-btn {
+  min-height: 38px;
+  min-width: 38px;
+  width: 38px;
+  padding: 0;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-strong);
+  background: linear-gradient(180deg, var(--surface-high), var(--surface-soft));
+  color: var(--text-muted);
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1);
+}
+
+.auth-modal .settings-head .ghost-button.subtle.auth-close-btn:hover {
+  color: var(--text-strong);
+  border-color: var(--accent-strong);
+  background: linear-gradient(180deg, var(--surface-high), var(--surface-soft));
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.14);
+}
+
+.auth-modal .settings-head .ghost-button.subtle.auth-close-btn svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+.auth-modal .settings-head .ghost-button.subtle.auth-close-btn path {
+  stroke: currentColor;
+  stroke-width: 2.4;
+  stroke-linecap: round;
 }
 
 .primary-button {
