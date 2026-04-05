@@ -1256,8 +1256,9 @@ textarea {
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  font-size: 1rem;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
   color: #ffffff;
 }
 
