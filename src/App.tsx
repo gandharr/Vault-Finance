@@ -616,7 +616,9 @@ function App() {
                 ) : null}
               </div>
               <button className="ghost-button subtle auth-close-btn" type="button" aria-label="Close" onClick={closeAuth}>
-                ×
+                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                  <path d="M6 6L18 18M18 6L6 18" />
+                </svg>
               </button>
             </div>
 
