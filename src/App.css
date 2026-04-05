@@ -1235,6 +1235,11 @@ textarea {
   font-weight: 600;
 }
 
+.transaction-identity strong {
+  font-size: 0.96rem;
+  letter-spacing: -0.01em;
+}
+
 .transaction-identity span,
 .transaction-meta,
 .amount {
@@ -1250,23 +1255,28 @@ textarea {
 }
 
 .transaction-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border-soft);
   display: grid;
   place-items: center;
   flex-shrink: 0;
-  font-size: 1rem;
+  font-size: 0.9rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-strong);
 }
 
 .transaction-icon.income {
-  background: linear-gradient(135deg, #16a34a, #4ade80);
+  background: rgba(21, 128, 61, 0.16);
+  border-color: rgba(21, 128, 61, 0.28);
+  color: #22c55e;
 }
 
 .transaction-icon.expense {
-  background: linear-gradient(135deg, #dc2626, #fb7185);
+  background: rgba(220, 38, 38, 0.14);
+  border-color: rgba(220, 38, 38, 0.28);
+  color: #ef4444;
 }
 
 .transaction-meta {

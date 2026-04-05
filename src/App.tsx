@@ -1137,7 +1137,7 @@ function App() {
               <article className="transaction-row" role="listitem" key={transaction.id}>
                 <div className="transaction-identity">
                   <div className={`transaction-icon ${transaction.type}`}>
-                    {transaction.type === 'income' ? '+' : '−'}
+                    {transaction.type === 'income' ? '↗' : '↘'}
                   </div>
                   <div>
                     <strong>{transaction.merchant}</strong>
@@ -1152,7 +1152,9 @@ function App() {
                     {transaction.type === 'income' ? '+' : '-'}
                     {formatCurrency(transaction.amount)}
                   </span>
-                  <span className={`type-pill ${transaction.type}`}>{transaction.type}</span>
+                  <span className={`type-pill ${transaction.type}`}>
+                    {transaction.type === 'income' ? 'Income' : 'Expense'}
+                  </span>
                 </div>
 
                 <p className="transaction-note">{transaction.note}</p>
