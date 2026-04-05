@@ -513,7 +513,7 @@ function App() {
             </div>
           ) : (
             <div className="auth-actions">
-              <button className="ghost-button subtle compact-btn" type="button" onClick={() => openAuth('login')}>
+              <button className="ghost-button subtle compact-btn auth-login-btn" type="button" onClick={() => openAuth('login')}>
                 Login
               </button>
               <button className="primary-button auth-primary compact-btn" type="button" onClick={() => openAuth('signup')}>
