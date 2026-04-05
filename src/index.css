@@ -10,11 +10,11 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --bg: #eef3fb;
+  --bg: #fff7ed;
   --bg-overlay:
-    radial-gradient(circle at top left, rgba(96, 165, 250, 0.24), transparent 32%),
-    radial-gradient(circle at top right, rgba(34, 197, 94, 0.16), transparent 28%),
-    linear-gradient(180deg, #f7f9fc 0%, #edf2fa 100%);
+    radial-gradient(circle at top left, rgba(249, 115, 22, 0.2), transparent 32%),
+    radial-gradient(circle at top right, rgba(20, 184, 166, 0.16), transparent 28%),
+    linear-gradient(180deg, #fffbf5 0%, #fff4e6 100%);
   --surface-low: rgba(255, 255, 255, 0.74);
   --surface-high: rgba(255, 255, 255, 0.92);
   --surface-soft: rgba(248, 250, 252, 0.86);
@@ -27,12 +27,12 @@
   --border-strong: rgba(15, 23, 42, 0.12);
   --text-strong: #0f172a;
   --text-muted: #5c6477;
-  --accent-strong: #2563eb;
-  --accent-mid: #60a5fa;
-  --accent-faint: #38bdf8;
+  --accent-strong: #d97706;
+  --accent-mid: #f59e0b;
+  --accent-faint: #f97316;
   --positive: #15803d;
   --negative: #b91c1c;
-  --focus-ring: rgba(37, 99, 235, 0.16);
+  --focus-ring: rgba(217, 119, 6, 0.16);
   --shadow-lg:
     0 8px 16px rgba(15, 23, 42, 0.08),
     0 2px 4px rgba(15, 23, 42, 0.04);
@@ -41,11 +41,11 @@
 
 html[data-theme='dark'] {
   color-scheme: dark;
-  --bg: #08111f;
+  --bg: #18181b;
   --bg-overlay:
-    radial-gradient(circle at top left, rgba(59, 130, 246, 0.22), transparent 30%),
-    radial-gradient(circle at top right, rgba(34, 197, 94, 0.14), transparent 26%),
-    linear-gradient(180deg, #08111f 0%, #0d1728 100%);
+    radial-gradient(circle at top left, rgba(251, 191, 36, 0.2), transparent 30%),
+    radial-gradient(circle at top right, rgba(20, 184, 166, 0.14), transparent 26%),
+    linear-gradient(180deg, #18181b 0%, #27272a 100%);
   --surface-low: rgba(12, 20, 36, 0.78);
   --surface-high: rgba(16, 24, 40, 0.9);
   --surface-soft: rgba(9, 16, 30, 0.86);
@@ -58,12 +58,12 @@ html[data-theme='dark'] {
   --border-strong: rgba(148, 163, 184, 0.22);
   --text-strong: #f8fafc;
   --text-muted: #94a3b8;
-  --accent-strong: #7dd3fc;
-  --accent-mid: #38bdf8;
-  --accent-faint: #60a5fa;
+  --accent-strong: #fbbf24;
+  --accent-mid: #f97316;
+  --accent-faint: #f59e0b;
   --positive: #4ade80;
   --negative: #f87171;
-  --focus-ring: rgba(125, 211, 252, 0.16);
+  --focus-ring: rgba(251, 191, 36, 0.18);
   --shadow-lg:
     0 8px 16px rgba(2, 6, 23, 0.16),
     0 2px 4px rgba(2, 6, 23, 0.08);
@@ -139,6 +139,7 @@ a {
 }
 
 ::selection {
-  background: rgba(37, 99, 235, 0.2);
+  background: rgba(217, 119, 6, 0.2);
   color: var(--text-strong);
 }
+
