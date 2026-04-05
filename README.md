@@ -15,9 +15,15 @@ Vault Finance is a frontend-only finance dashboard built with React + TypeScript
 
 ### Mobile View
 
-<div style="display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;">
-  <img src="public/screenshots/dashboard-mobile-1.jpeg" alt="Mobile Login Screen" width="300" />
-  <img src="public/screenshots/dashboard-mobile-2.jpeg" alt="Mobile Dashboard Screen" width="300" />
+<div style="display: flex; gap: 30px; justify-content: center; align-items: flex-start; flex-wrap: wrap; margin: 20px 0;">
+  <div style="flex: 0 0 280px; text-align: center;">
+    <img src="public/screenshots/dashboard-mobile-1.jpeg" alt="Mobile Login Screen" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);" />
+    <p style="font-size: 13px; color: #666; margin-top: 8px;">Login & Access</p>
+  </div>
+  <div style="flex: 0 0 280px; text-align: center;">
+    <img src="public/screenshots/dashboard-mobile-2.jpeg" alt="Mobile Dashboard Screen" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);" />
+    <p style="font-size: 13px; color: #666; margin-top: 8px;">Dashboard & Analytics</p>
+  </div>
 </div>
 
 ## Assignment Context
