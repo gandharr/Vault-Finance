@@ -1722,3 +1722,149 @@ textarea {
     padding-right: 12px;
   }
 }
+
+@media (max-width: 900px) {
+  .dashboard-shell {
+    width: calc(100% - 16px);
+    gap: 12px;
+    padding-bottom: 20px;
+  }
+
+  .app-header,
+  .hero-panel,
+  .panel {
+    border-radius: 16px;
+  }
+
+  .app-header {
+    padding: 12px;
+  }
+
+  .hero-panel,
+  .panel {
+    padding: 14px;
+  }
+
+  .hero-copy {
+    gap: 12px;
+  }
+
+  .hero-copy h2 {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+    line-height: 1.05;
+  }
+
+  .panel-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .panel-chip,
+  .trend-pill {
+    align-self: flex-start;
+  }
+
+  .chart-axis {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 10px 14px;
+  }
+
+  .chart-axis span {
+    font-size: 0.74rem;
+  }
+
+  .transaction-toolbar {
+    grid-template-columns: 1fr;
+    padding: 12px;
+    gap: 10px;
+  }
+
+  .transaction-toolbar label {
+    gap: 6px;
+  }
+
+  .transaction-toolbar input,
+  .transaction-toolbar select {
+    min-height: 46px;
+  }
+
+  .transaction-row {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    align-items: start;
+    padding: 12px;
+  }
+
+  .transaction-identity {
+    align-items: flex-start;
+  }
+
+  .transaction-meta {
+    justify-items: start;
+    gap: 6px;
+  }
+
+  .type-pill {
+    width: fit-content;
+  }
+
+  .row-actions {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .row-actions button {
+    flex: 1 1 calc(50% - 6px);
+  }
+
+  .month-compare-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .month-compare-card {
+    padding: 10px 12px;
+    gap: 8px;
+  }
+
+  .month-compare-card > p {
+    font-size: 0.8rem;
+  }
+
+  .breakdown-row {
+    gap: 8px;
+  }
+
+  .breakdown-share {
+    font-size: 0.86rem;
+  }
+
+  .footer-note {
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .auth-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .sparkline-row {
+    grid-template-columns: 64px minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  .sparkline-row strong {
+    font-size: 0.76rem;
+  }
+
+  .chart-summary-strip div {
+    padding: 10px 12px;
+  }
+
+  .row-actions button {
+    flex: 1 1 100%;
+  }
+}
