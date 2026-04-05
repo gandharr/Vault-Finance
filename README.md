@@ -48,6 +48,7 @@ This submission is intentionally designed to match the brief:
 - Local persistence with localStorage
 - Empty-state handling and responsive behavior
 - Subtle motion and transition polish
+- Themed dropdown controls aligned with the dashboard surface style
 
 ## Tech Stack
 
@@ -345,6 +346,7 @@ If the site does not update immediately after pushing, check the Actions tab in 
 - Used concise labels and tight spacing to keep content scan-friendly
 - Preserved readability in dark surfaces with clear contrast and muted secondary text
 - Added progressive interaction polish while respecting reduced-motion preferences
+- Matched form controls and dropdowns to the same visual language as the rest of the app
 
 ## Data and Logic Notes
 
