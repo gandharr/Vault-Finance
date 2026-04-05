@@ -130,6 +130,174 @@ If the site does not update immediately after pushing, check the Actions tab in 
 - Sort by newest/oldest/amount high/amount low
 - Admin can add/edit/delete transactions; Viewer is read-only
 
+## Architecture Overview
+
+```
+┌─────────────────────────────────────────────────────┐
+│                    React App (App.tsx)              │
+├─────────────────────────────────────────────────────┤
+│                                                     │
+│  State Management (useState, useMemo, useEffect)   │
+│  ├── Transactions & Filters                         │
+│  ├── User Auth & Role                               │
+│  ├── Theme & Settings                               │
+│  └── UI State (modals, drawers, selections)         │
+│                                                     │
+│  Utilities & Helpers                                │
+│  ├── Data Formatters (currency, date)              │
+│  ├── Chart Builders (trend, breakdown, comparison) │
+│  ├── SVG Path Generators                           │
+│  └── Auth Handlers (signup, login, password reset) │
+│                                                     │
+│  Components & UI Sections                           │
+│  ├── Header (role selector, auth modal)             │
+│  ├── Dashboard (summary cards, charts, insights)   │
+│  ├── Transaction Section (CRUD operations)          │
+│  └── Search/Filter/Sort Interface                   │
+│                                                     │
+└─────────────────────────────────────────────────────┘
+             ↓
+    ┌──────────────────────┐
+    │  localStorage API    │
+    │  (Data Persistence)  │
+    └──────────────────────┘
+```
+
+**Data Flow:**
+- User Actions → State Update → useMemo Recalculation → UI Re-render → localStorage Sync
+
+## Features Deep Dive
+
+### 1. Dashboard Overview
+- **Summary Cards**: Real-time calculation of Total Balance, Income, Expenses
+- **Balance Trend Chart**: SVG line chart displaying 12-month trajectory with interactive hover labels
+- **Spending Breakdown**: Horizontal bar chart categorizing expenses by type with percentage distribution
+- **Hero Header**: Quick-view net change indicator with month-over-month delta
+
+### 2. Dynamic Search & Filtering
+- **Search**: Global search across merchant, category, and notes fields
+- **Categorical Filters**: Toggle expense/income types; multi-select categories
+- **Smart Sorting**: Dynamically sort by newest/oldest dates or amount (high/low)
+- **Real-time Updates**: All filters apply instantly with empty-state handling
+
+### 3. Role-Based Access Control (Frontend)
+- **Viewer Mode**: Read-only access, no transaction modifications, perfect for data audits
+- **Admin Mode**: Full CRUD (Create, Read, Update, Delete) permissions
+- **Sign-in Gate**: Admin features locked behind email/password authentication (simulated)
+- **Seamless Switching**: Role toggle reflected across entire interface immediately
+
+### 4. Interactive Charts with Hover Details
+- **Balance Trend**: Hover over points to see exact date and amount
+- **Spending Breakdown**: Tooltips display category name and percentage
+- **Sparkline Indicators**: Mini trend indicators on summary cards
+- **SVG Rendering**: Crisp graphics at any resolution, no external libraries
+
+### 5. Responsive Mobile Experience
+- **Adaptive Layout**: Optimized for 480px, 520px, 720px, 900px, 1024px breakpoints
+- **Touch-Friendly**: Larger tap targets, readable font sizes on small screens
+- **Mobile-First Auth**: Compact auth modal sized for phones (100% viewport width - margins)
+- **Smooth Animations**: Subtle transitions maintain polish on all devices
+
+### 6. Data Persistence
+- **localStorage Integration**: Automatic sync on every state change
+- **JSON Serialization**: Complex state structures preserved accurately
+- **Cross-Session Persistence**: Transactions, preferences, auth state retained across browser reopens
+- **Demo Reset**: One-click workspace reset to initial state
+
+## User Journey Scenarios
+
+### Scenario 1: New Viewer User
+```
+1. Opens app → Viewer mode is default
+2. Sees dashboard with sample data (12 sample transactions)
+3. Can search transactions by merchant or category
+4. Can filter by income/expense type
+5. Can sort by date or amount
+6. Views charts and insights (read-only)
+7. Cannot modify data
+8. Can toggle dark/light mode anytime
+```
+
+### Scenario 2: Admin User Setup & Transaction Management
+```
+1. Clicks "Login" button → Auth modal appears
+2. Selects "Sign Up" → Creates account with email/password
+3. Account saved to localStorage users database
+4. Switches role to "Admin" → Unlock panel appears
+5. Clicks "Unlock Admin" → Sign-in modal required
+6. Enters credentials → Access unlocked
+7. Can now: Add new transactions, Edit existing transactions, Delete transactions
+8. Changes sync instantly to charts, summaries, and sorting UI
+9. Can "Reset Workspace" in Settings to clear all data
+```
+
+### Scenario 3: Data Exploration & Analysis
+```
+1. User applies filters (Show only Expenses, Category: Groceries)
+2. Transaction list updates instantly
+3. Summary cards recalculate (Income/Expenses/Balance)
+4. Charts re-render with filtered dataset
+5. Insights update with new highest-category and monthly comparison
+6. Search adds additional refinement on top of filters
+7. User can sort results by newest/oldest or amount
+8. All state persists if page is refreshed
+```
+
+## Testing Scenarios (Manual QA Checklist)
+
+### Authentication & Authorization
+- [ ] Sign up with new email → Shows account created
+- [ ] Login with wrong password → Shows error
+- [ ] Login with correct password → Grants Admin access
+- [ ] Sign out → Returns to Viewer mode
+- [ ] Close browser, reopen → Account data persists
+- [ ] Password reset flow → Simulates reset UI
+
+### Dashboard Features
+- [ ] Summary cards show correct calculated values
+- [ ] Balance trend chart renders 12 months of data
+- [ ] Spending breakdown displays all categories proportionally
+- [ ] Hero sparkline shows month-over-month change (positive/negative)
+- [ ] All numbers format correctly in INR locale (₹ symbol, comma separators)
+
+### Transaction Operations (Admin Only)
+- [ ] Add transaction → Appears in list, updates cards/charts
+- [ ] Edit transaction → Updates instantly in all UI sections
+- [ ] Delete transaction → Removes from list and updates summaries
+- [ ] Duplicate prevention → Same merchant/category/date can coexist
+
+### Search, Filter & Sort
+- [ ] Search by merchant → Shows matching transactions
+- [ ] Search by category → Shows matching transactions
+- [ ] Search by note → Shows matching transactions
+- [ ] Filter by Expense → Shows only expenses
+- [ ] Filter by Income → Shows only income
+- [ ] Multi-filter (Expense + Groceries) → Shows only matching subset
+- [ ] Sort Newest → Orders by date descending
+- [ ] Sort Oldest → Orders by date ascending
+- [ ] Sort Amount High → Orders descending by amount
+- [ ] Sort Amount Low → Orders ascending by amount
+- [ ] Combine filters + search + sort → All apply simultaneously
+
+### Responsive Behavior
+- [ ] Desktop (1920px): Full layout displayed
+- [ ] Tablet (900px): Sidebar collapses, content adapts
+- [ ] Mobile (520px): Auth modal properly centered and sized
+- [ ] Mobile (480px): All text readable, buttons accessible
+- [ ] Orientation change: Layout adapts smoothly
+
+### Dark Mode
+- [ ] Toggle dark mode → Color scheme inverts
+- [ ] Stays in dark mode on page refresh
+- [ ] Charts visible in both themes
+- [ ] Text contrast meets accessibility standards
+
+### Performance & Edge Cases
+- [ ] Empty transaction list → Shows "No transactions" state
+- [ ] Filtered results empty → Shows "No transactions match filters" state
+- [ ] Large dataset (100+ transactions) → Still responsive
+- [ ] localStorage quota not exceeded → Data persists
+
 ## Requirement-by-Requirement Mapping
 
 1. Dashboard Overview: Implemented
