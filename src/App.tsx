@@ -364,9 +364,7 @@ function App() {
   }
 
   function closeAuth() {
-    if (currentUser) {
-      setAuthOpen(false)
-    }
+    setAuthOpen(false)
   }
 
   function handleAuthSubmit(event: FormEvent<HTMLFormElement>) {
@@ -594,14 +592,12 @@ function App() {
 
       {authOpen ? (
         <>
-          {currentUser ? (
-            <button
-              className="settings-overlay"
-              type="button"
-              aria-label="Close authentication"
-              onClick={closeAuth}
-            />
-          ) : null}
+          <button
+            className="settings-overlay"
+            type="button"
+            aria-label="Close authentication"
+            onClick={closeAuth}
+          />
           <aside className="auth-modal" aria-label="Authentication">
             <div className="settings-head">
               <div>
@@ -619,11 +615,9 @@ function App() {
                   <p className="auth-hint">Sign up to get started.</p>
                 ) : null}
               </div>
-              {currentUser ? (
-                <button className="ghost-button subtle" type="button" onClick={closeAuth}>
-                  Close
-                </button>
-              ) : null}
+              <button className="ghost-button subtle auth-close-btn" type="button" aria-label="Close" onClick={closeAuth}>
+                ×
+              </button>
             </div>
 
             <form className="auth-form" onSubmit={handleAuthSubmit}>
