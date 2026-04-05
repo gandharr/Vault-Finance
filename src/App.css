@@ -1813,13 +1813,16 @@ textarea {
   }
 
   .chart-axis {
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 10px 14px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+    margin-top: 10px;
+    text-align: center;
   }
 
   .chart-axis span {
     font-size: 0.74rem;
+    white-space: nowrap;
   }
 
   .sparkline-meta {
@@ -1910,6 +1913,14 @@ textarea {
 }
 
 @media (max-width: 520px) {
+  .chart-axis {
+    gap: 4px;
+  }
+
+  .chart-axis span {
+    font-size: 0.7rem;
+  }
+
   .auth-modal {
     top: 6px;
     left: 6px;
