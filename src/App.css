@@ -1607,9 +1607,29 @@ textarea {
   .auth-modal {
     top: 8px;
     left: 8px;
+    right: 8px;
     transform: none;
     width: auto;
-    max-height: calc(100vh - 16px);
+    max-height: calc(100dvh - 16px);
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .auth-modal .settings-head {
+    align-items: center;
+    margin-bottom: 2px;
+  }
+
+  .auth-modal .settings-head h3 {
+    margin-top: 0;
+  }
+
+  .auth-modal .settings-head .ghost-button {
+    min-height: 34px;
+    padding: 0.3rem 0.6rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-soft);
+    background: var(--surface-soft);
   }
 
   .auth-actions,
@@ -1627,6 +1647,10 @@ textarea {
   .auth-actions .ghost-button,
   .auth-actions .primary-button {
     min-height: 42px;
+  }
+
+  .auth-form {
+    gap: 12px;
   }
 
   .auth-actions button,
@@ -1847,6 +1871,14 @@ textarea {
 }
 
 @media (max-width: 520px) {
+  .auth-modal {
+    top: 6px;
+    left: 6px;
+    right: 6px;
+    max-height: calc(100dvh - 12px);
+    padding: 14px;
+  }
+
   .auth-actions {
     grid-template-columns: 1fr;
   }
