@@ -874,6 +874,12 @@ textarea {
   font-weight: 600;
 }
 
+.chart-axis-label {
+  fill: var(--text-muted);
+  font-size: 24px;
+  font-weight: 600;
+}
+
 .chart-summary-strip {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1812,17 +1818,8 @@ textarea {
     align-self: flex-start;
   }
 
-  .chart-axis {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 6px;
-    margin-top: 10px;
-    text-align: center;
-  }
-
-  .chart-axis span {
-    font-size: 0.74rem;
-    white-space: nowrap;
+  .chart-axis-label {
+    font-size: 20px;
   }
 
   .sparkline-meta {
@@ -1913,12 +1910,8 @@ textarea {
 }
 
 @media (max-width: 520px) {
-  .chart-axis {
-    gap: 4px;
-  }
-
-  .chart-axis span {
-    font-size: 0.7rem;
+  .chart-axis-label {
+    font-size: 18px;
   }
 
   .auth-modal {

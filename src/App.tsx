@@ -823,12 +823,22 @@ function App() {
                       </g>
                     )
                   })}
+                  {trendData.map((entry, index) => {
+                    const dotPosition = buildTrendDotPosition(trendData, index)
+
+                    return (
+                      <text
+                        key={`axis-${entry.label}`}
+                        x={dotPosition.x}
+                        y="312"
+                        textAnchor="middle"
+                        className="chart-axis-label"
+                      >
+                        {entry.label}
+                      </text>
+                    )
+                  })}
                 </svg>
-                <div className="chart-axis">
-                  {trendData.map((entry) => (
-                    <span key={entry.label}>{entry.label}</span>
-                  ))}
-                </div>
                 <div className="chart-summary-strip">
                   <div>
                     <span>Latest point</span>
