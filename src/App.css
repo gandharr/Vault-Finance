@@ -258,17 +258,34 @@
 }
 
 .auth-close-btn {
-  min-height: 32px;
-  min-width: 32px;
-  width: 32px;
+  min-height: 38px;
+  min-width: 38px;
+  width: 38px;
   padding: 0;
   border-radius: 999px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.05rem;
+  border: 1px solid var(--border-strong);
+  background: linear-gradient(180deg, var(--surface-high), var(--surface-soft));
+  color: var(--text-muted);
+  font-size: 1.2rem;
   line-height: 1;
   font-weight: 700;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.1);
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    color 180ms ease,
+    background-color 180ms ease,
+    transform 180ms ease;
+}
+
+.auth-close-btn:hover {
+  color: var(--text-strong);
+  border-color: var(--accent-strong);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.14);
+  transform: translateY(-1px);
 }
 
 .auth-hint {
@@ -1693,11 +1710,12 @@ textarea {
   }
 
   .auth-modal .settings-head .auth-close-btn {
-    min-height: 32px;
-    min-width: 32px;
-    width: 32px;
+    min-height: 36px;
+    min-width: 36px;
+    width: 36px;
     padding: 0;
     border-radius: 999px;
+    font-size: 1.1rem;
   }
 
   .auth-actions,
