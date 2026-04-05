@@ -15,7 +15,9 @@ Vault Finance is a frontend-only finance dashboard built with React + TypeScript
 
 ### Mobile View
 
-![Vault Finance Dashboard - Mobile](public/screenshots/dashboard-mobile.png)
+![Vault Finance Dashboard - Mobile Login](public/screenshots/dashboard-mobile-1.jpeg)
+
+![Vault Finance Dashboard - Mobile Dashboard](public/screenshots/dashboard-mobile-2.jpeg)
 
 ## Assignment Context
 
