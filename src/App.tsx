@@ -221,7 +221,7 @@ function App() {
   const [draft, setDraft] = useState<TransactionDraft>(emptyDraft)
   const [preferencesOpen, setPreferencesOpen] = useState(false)
   const [authMode, setAuthMode] = useState<AuthMode>('login')
-  const [authOpen, setAuthOpen] = useState(() => !window.localStorage.getItem(currentUserKey))
+  const [authOpen, setAuthOpen] = useState(false)
   const [pendingRole, setPendingRole] = useState<Role | null>(null)
   const [authDraft, setAuthDraft] = useState<AuthDraft>(emptyAuthDraft)
   const [currentUser, setCurrentUser] = useState<string | null>(() => {
