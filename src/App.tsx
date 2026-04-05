@@ -846,12 +846,7 @@ function App() {
                   </div>
                 </div>
                 <div className="month-compare-card" aria-label="Month-over-month net comparison">
-                  <div className="month-compare-head">
-                    <span>Month-over-month net change</span>
-                    <strong className={monthComparisonDelta >= 0 ? 'positive' : 'negative'}>
-                      {monthComparisonDelta >= 0 ? '+' : '-'} {formatCurrency(Math.abs(monthComparisonDelta))}
-                    </strong>
-                  </div>
+                  <span>Month-over-month net change</span>
                   <div className="month-compare-grid">
                     <article>
                       <p>{previousMonthLabel}</p>
@@ -866,10 +861,11 @@ function App() {
                       </strong>
                     </article>
                   </div>
-                  <p className="month-compare-note">
+                  <p className={monthComparisonDelta >= 0 ? 'positive' : 'negative'}>
+                    {monthComparisonDelta >= 0 ? 'Up' : 'Down'} by {formatCurrency(Math.abs(monthComparisonDelta))}
                     {monthComparisonDeltaMultiple !== null
-                      ? `${monthComparisonDeltaMultiple}x vs ${previousMonthLabel}`
-                      : `Compared with ${previousMonthLabel}`}
+                      ? ` (${monthComparisonDeltaMultiple}x vs ${previousMonthLabel})`
+                      : ''}
                   </p>
                 </div>
               </>
