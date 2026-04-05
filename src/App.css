@@ -113,6 +113,8 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   background-image: none;
+  background-color: var(--surface-high);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
 .role-select::-ms-expand {
@@ -437,7 +439,7 @@ input,
 textarea {
   width: 100%;
   border: 1px solid var(--border-strong);
-  background: var(--input-bg);
+  background: var(--surface-high);
   color: var(--text-strong);
   border-radius: 8px;
   padding: 0.76rem 0.88rem;
@@ -451,6 +453,7 @@ textarea {
   box-sizing: border-box;
   background-clip: padding-box;
   color-scheme: inherit;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
 html[data-theme='dark'] select {
@@ -1309,8 +1312,8 @@ textarea {
   background-image: none;
   padding-right: 2.1rem;
   padding-left: 0.9rem;
-  background: var(--surface-high);
-  box-shadow: none;
+  background-color: var(--surface-high);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
 }
 
 .transaction-toolbar .filter-select-wrap select::-ms-expand {
