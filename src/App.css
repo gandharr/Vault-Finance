@@ -560,6 +560,10 @@ textarea {
 .sparkline-meta strong {
   font-size: 0.9rem;
   letter-spacing: -0.01em;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .sparkline-bars {
@@ -1813,6 +1817,22 @@ textarea {
 
   .chart-axis span {
     font-size: 0.74rem;
+  }
+
+  .sparkline-meta {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    column-gap: 10px;
+    row-gap: 2px;
+  }
+
+  .sparkline-meta span {
+    line-height: 1.25;
+  }
+
+  .sparkline-meta strong {
+    justify-self: end;
   }
 
   .transaction-toolbar {
