@@ -209,10 +209,14 @@
   width: min(440px, calc(100vw - 24px));
   max-height: calc(100vh - 32px);
   overflow: auto;
-  border-radius: 16px;
-  border: 1px solid var(--border-strong);
-  background: var(--surface-high);
-  box-shadow: var(--shadow-lg);
+  border-radius: 18px;
+  border: 2px solid transparent;
+  background: 
+    linear-gradient(var(--surface-high), var(--surface-high)) padding-box,
+    linear-gradient(135deg, rgba(148, 163, 184, 0.4) 0%, rgba(120, 113, 108, 0.2) 50%, rgba(148, 163, 184, 0.3) 100%) border-box;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    0 8px 24px rgba(15, 23, 42, 0.12);
   z-index: 26;
   padding: 20px;
   display: grid;
@@ -225,6 +229,10 @@
 .auth-form {
   display: grid;
   gap: 14px;
+  padding: 16px;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(148, 163, 184, 0.04) 0%, rgba(148, 163, 184, 0.02) 100%);
+  border: 1px solid rgba(148, 163, 184, 0.12);
 }
 
 .auth-form label {
