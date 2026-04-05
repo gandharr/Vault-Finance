@@ -25,6 +25,8 @@ type AuthDraft = {
 }
 
 const storageKey = 'zorvyn-finance-dashboard-v1'
+const usersKey = 'vault-users-db'
+const currentUserKey = 'vault-current-email'
 const openingBalance = 12840
 
 const sampleTransactions: Transaction[] = [
@@ -153,6 +155,39 @@ const emptyAuthDraft: AuthDraft = {
   password: '',
 }
 
+// Auth helpers
+const getUsersDB = () => {
+  const stored = window.localStorage.getItem(usersKey)
+  return stored ? JSON.parse(stored) : {}
+}
+
+const saveUserDB = (db: Record<string, { fullName: string; password: string }>) => {
+  window.localStorage.setItem(usersKey, JSON.stringify(db))
+}
+
+const userExists = (email: string): boolean => {
+  const db = getUsersDB()
+  return db[email.toLowerCase()] !== undefined
+}
+
+const verifyPassword = (email: string, password: string): boolean => {
+  const db = getUsersDB()
+  const user = db[email.toLowerCase()]
+  return user ? user.password === password : false
+}
+
+const getUserName = (email: string): string => {
+  const db = getUsersDB()
+  const user = db[email.toLowerCase()]
+  return user?.fullName || 'Vault User'
+}
+
+const createUser = (email: string, fullName: string, password: string): void => {
+  const db = getUsersDB()
+  db[email.toLowerCase()] = { fullName, password }
+  saveUserDB(db)
+}
+
 const faviconPath = `${import.meta.env.BASE_URL}favicon.svg`
 
 function App() {
@@ -186,12 +221,13 @@ function App() {
   const [draft, setDraft] = useState<TransactionDraft>(emptyDraft)
   const [preferencesOpen, setPreferencesOpen] = useState(false)
   const [authMode, setAuthMode] = useState<AuthMode>('login')
-  const [authOpen, setAuthOpen] = useState(false)
+  const [authOpen, setAuthOpen] = useState(() => !window.localStorage.getItem(currentUserKey))
   const [pendingRole, setPendingRole] = useState<Role | null>(null)
   const [authDraft, setAuthDraft] = useState<AuthDraft>(emptyAuthDraft)
   const [currentUser, setCurrentUser] = useState<string | null>(() => {
-    const storedName = window.localStorage.getItem('vault-user-name')
-    return storedName && storedName.trim().length > 0 ? storedName : null
+    const email = window.localStorage.getItem(currentUserKey)
+    if (!email) return null
+    return getUserName(email)
   })
   const [statusMessage, setStatusMessage] = useState('Sample portfolio ready')
 
@@ -328,7 +364,9 @@ function App() {
   }
 
   function closeAuth() {
-    setAuthOpen(false)
+    if (currentUser) {
+      setAuthOpen(false)
+    }
   }
 
   function handleAuthSubmit(event: FormEvent<HTMLFormElement>) {
@@ -346,45 +384,75 @@ function App() {
       return
     }
 
-    const name =
-      authMode === 'signup'
-        ? authDraft.fullName.trim()
-        : authDraft.email.trim().split('@')[0]
+    const email = authDraft.email.trim().toLowerCase()
+    const password = authDraft.password.trim()
+    const fullName = authDraft.fullName.trim()
 
-    if (authDraft.email.trim().length === 0 || authDraft.password.trim().length < 4) {
+    if (email.length === 0 || password.length < 4) {
       setStatusMessage('Enter a valid email and a password with at least 4 characters.')
       return
     }
 
-    if (authMode === 'signup' && name.length < 2) {
-      setStatusMessage('Enter your full name to complete sign up.')
-      return
-    }
+    if (authMode === 'signup') {
+      if (fullName.length < 2) {
+        setStatusMessage('Enter your full name to complete sign up.')
+        return
+      }
 
-    const finalName =
-      name.length > 0
-        ? name
-            .split(' ')
-            .map((token) => token.charAt(0).toUpperCase() + token.slice(1))
-            .join(' ')
-        : 'Vault User'
+      // Check if account already exists
+      if (userExists(email)) {
+        setStatusMessage(`Account with ${email} already exists. Please login.`)
+        setAuthMode('login')
+        return
+      }
 
-    setCurrentUser(finalName)
-    setAuthOpen(false)
-    setAuthDraft(emptyAuthDraft)
-    if (pendingRole === 'admin') {
-      setRole('admin')
-      setPendingRole(null)
+      // Create new account
+      const finalName = fullName
+        .split(' ')
+        .map((token) => token.charAt(0).toUpperCase() + token.slice(1))
+        .join(' ')
+
+      createUser(email, finalName, password)
+      window.localStorage.setItem(currentUserKey, email)
+      setCurrentUser(finalName)
+      setAuthOpen(false)
+      setAuthDraft(emptyAuthDraft)
+      if (pendingRole === 'admin') {
+        setRole('admin')
+        setPendingRole(null)
+      }
+      setStatusMessage(`Welcome to Vault, ${finalName}!`)
+    } else {
+      // Login mode
+      if (!userExists(email)) {
+        setStatusMessage(`No account found with ${email}. Please sign up.`)
+        setAuthMode('signup')
+        return
+      }
+
+      if (!verifyPassword(email, password)) {
+        setStatusMessage('Incorrect password.')
+        return
+      }
+
+      const finalName = getUserName(email)
+      window.localStorage.setItem(currentUserKey, email)
+      setCurrentUser(finalName)
+      setAuthOpen(false)
+      setAuthDraft(emptyAuthDraft)
+      if (pendingRole === 'admin') {
+        setRole('admin')
+        setPendingRole(null)
+      }
+      setStatusMessage(`Welcome back, ${finalName}!`)
     }
-    setStatusMessage(
-      authMode === 'signup'
-        ? `Welcome to Vault, ${finalName}.`
-        : `Welcome back, ${finalName}.`,
-    )
   }
 
   function handleSignOut() {
     setCurrentUser(null)
+    window.localStorage.removeItem(currentUserKey)
+    setAuthOpen(true)
+    setAuthMode('login')
     setPendingRole(null)
     setRole('viewer')
     setStatusMessage('Signed out successfully.')
@@ -526,12 +594,14 @@ function App() {
 
       {authOpen ? (
         <>
-          <button
-            className="settings-overlay"
-            type="button"
-            aria-label="Close authentication"
-            onClick={closeAuth}
-          />
+          {currentUser ? (
+            <button
+              className="settings-overlay"
+              type="button"
+              aria-label="Close authentication"
+              onClick={closeAuth}
+            />
+          ) : null}
           <aside className="auth-modal" aria-label="Authentication">
             <div className="settings-head">
               <div>
@@ -545,11 +615,15 @@ function App() {
                 </h3>
                 {pendingRole === 'admin' ? (
                   <p className="auth-hint">Admin access requires sign-in.</p>
+                ) : !currentUser ? (
+                  <p className="auth-hint">Sign up to get started.</p>
                 ) : null}
               </div>
-              <button className="ghost-button subtle" type="button" onClick={closeAuth}>
-                Close
-              </button>
+              {currentUser ? (
+                <button className="ghost-button subtle" type="button" onClick={closeAuth}>
+                  Close
+                </button>
+              ) : null}
             </div>
 
             <form className="auth-form" onSubmit={handleAuthSubmit}>
