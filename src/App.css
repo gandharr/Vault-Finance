@@ -449,6 +449,17 @@ textarea {
     background-color 200ms ease,
     transform 200ms ease;
   box-sizing: border-box;
+  background-clip: padding-box;
+  color-scheme: inherit;
+}
+
+html[data-theme='dark'] select {
+  color-scheme: dark;
+}
+
+select option {
+  background: var(--surface-high);
+  color: var(--text-strong);
 }
 
 select:focus,
@@ -457,8 +468,6 @@ textarea:focus {
   border-color: var(--accent-strong);
   box-shadow: 0 0 0 3px var(--focus-ring);
 }
-  background-clip: padding-box;
-  color-scheme: inherit;
 
 textarea {
   resize: vertical;
@@ -477,13 +486,10 @@ textarea {
     background-color 200ms ease,
     color 200ms ease;
 }
-  transition: border-color 200ms ease, background-color 200ms ease, box-shadow 200ms ease;
 .ghost-button,
 .row-actions button {
   min-height: 36px;
   border-radius: 8px;
-  background: var(--surface-high);
-  box-shadow: none;
   padding: 0.6rem 0.88rem;
   background: var(--button-soft);
   color: var(--text-strong);
