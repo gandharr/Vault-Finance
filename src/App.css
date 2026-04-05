@@ -876,8 +876,10 @@ textarea {
 
 .chart-axis-label {
   fill: var(--text-muted);
-  font-size: 24px;
+  font-size: 18px;
   font-weight: 600;
+  dominant-baseline: hanging;
+  pointer-events: none;
 }
 
 .chart-summary-strip {
@@ -1819,7 +1821,7 @@ textarea {
   }
 
   .chart-axis-label {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   .sparkline-meta {
@@ -1911,7 +1913,7 @@ textarea {
 
 @media (max-width: 520px) {
   .chart-axis-label {
-    font-size: 18px;
+    font-size: 14px;
   }
 
   .auth-modal {

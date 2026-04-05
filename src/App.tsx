@@ -830,7 +830,7 @@ function App() {
                       <text
                         key={`axis-${entry.label}`}
                         x={dotPosition.x}
-                        y="312"
+                        y="302"
                         textAnchor="middle"
                         className="chart-axis-label"
                       >
