@@ -1090,38 +1090,44 @@ function App() {
               onChange={(event) => setQuery(event.target.value)}
             />
           </label>
-          <label>
+          <label className="filter-select">
             <span>Type</span>
-            <select
-              value={typeFilter}
-              onChange={(event) => setTypeFilter(event.target.value as 'all' | TransactionType)}
-            >
-              <option value="all">All types</option>
-              <option value="income">Income</option>
-              <option value="expense">Expense</option>
-            </select>
+            <div className="filter-select-wrap">
+              <select
+                value={typeFilter}
+                onChange={(event) => setTypeFilter(event.target.value as 'all' | TransactionType)}
+              >
+                <option value="all">All types</option>
+                <option value="income">Income</option>
+                <option value="expense">Expense</option>
+              </select>
+            </div>
           </label>
-          <label>
+          <label className="filter-select">
             <span>Category</span>
-            <select value={categoryFilter} onChange={(event) => setCategoryFilter(event.target.value)}>
-              {categoryOptions.map((option) => (
-                <option value={option} key={option}>
-                  {option === 'all' ? 'All categories' : option}
-                </option>
-              ))}
-            </select>
+            <div className="filter-select-wrap">
+              <select value={categoryFilter} onChange={(event) => setCategoryFilter(event.target.value)}>
+                {categoryOptions.map((option) => (
+                  <option value={option} key={option}>
+                    {option === 'all' ? 'All categories' : option}
+                  </option>
+                ))}
+              </select>
+            </div>
           </label>
-          <label>
+          <label className="filter-select">
             <span>Sort</span>
-            <select
-              value={sortMode}
-              onChange={(event) => setSortMode(event.target.value as SortMode)}
-            >
-              <option value="newest">Newest first</option>
-              <option value="oldest">Oldest first</option>
-              <option value="amount-high">Amount high to low</option>
-              <option value="amount-low">Amount low to high</option>
-            </select>
+            <div className="filter-select-wrap">
+              <select
+                value={sortMode}
+                onChange={(event) => setSortMode(event.target.value as SortMode)}
+              >
+                <option value="newest">Newest first</option>
+                <option value="oldest">Oldest first</option>
+                <option value="amount-high">Amount high to low</option>
+                <option value="amount-low">Amount low to high</option>
+              </select>
+            </div>
           </label>
         </div>
 

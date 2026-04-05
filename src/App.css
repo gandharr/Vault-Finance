@@ -1153,6 +1153,36 @@ textarea {
   text-transform: uppercase;
 }
 
+.transaction-toolbar .filter-select-wrap {
+  position: relative;
+}
+
+.transaction-toolbar .filter-select-wrap::after {
+  content: '';
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--text-muted);
+  border-bottom: 2px solid var(--text-muted);
+  transform: translateY(-60%) rotate(45deg);
+  pointer-events: none;
+}
+
+.transaction-toolbar .filter-select-wrap select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: none;
+  padding-right: 2.1rem;
+  padding-left: 0.9rem;
+}
+
+.transaction-toolbar .filter-select-wrap select::-ms-expand {
+  display: none;
+}
+
 .transaction-toolbar input,
 .transaction-toolbar select {
   min-height: 50px;
