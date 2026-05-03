@@ -160,7 +160,7 @@
 
 .auth-actions .auth-login-btn:hover {
   border-color: var(--accent-strong);
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(248, 113, 113, 0.04) 100%);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(20, 184, 166, 0.04) 100%);
 }
 
 .compact-btn {
@@ -338,7 +338,7 @@
   pointer-events: none;
   background:
     radial-gradient(circle at top left, rgba(255, 255, 255, 0.18), transparent 34%),
-    radial-gradient(circle at right bottom, rgba(248, 113, 113, 0.14), transparent 30%);
+    radial-gradient(circle at right bottom, rgba(45, 212, 191, 0.14), transparent 30%);
   opacity: 0.75;
 }
 
@@ -350,7 +350,7 @@
   border-radius: 16px;
   align-items: stretch;
   animation: revealUp 500ms cubic-bezier(0.16, 1, 0.3, 1) 70ms both;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(248, 113, 113, 0.06) 100%), var(--surface-high) !important;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(20, 184, 166, 0.06) 100%), var(--surface-high) !important;
 }
 
 .hero-copy,
@@ -551,12 +551,12 @@ textarea {
   background: linear-gradient(135deg, var(--accent-strong) 0%, var(--accent-mid) 100%);
   color: #ffffff;
   font-weight: 700;
-  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.24);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.24);
   transition: box-shadow 200ms ease, transform 200ms ease, filter 200ms ease;
 }
 
 .primary-button:hover {
-  box-shadow: 0 6px 18px rgba(220, 38, 38, 0.32);
+  box-shadow: 0 6px 18px rgba(217, 119, 6, 0.32);
 }
 
 .primary-button.compact-btn {
@@ -577,7 +577,7 @@ textarea {
 .hero-stat-card {
   border-radius: 12px;
   border: 1px solid var(--border-strong);
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.06) 0%, rgba(255, 255, 255, 0.4) 100%), var(--surface-high);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.06) 0%, rgba(255, 255, 255, 0.4) 100%), var(--surface-high);
   padding: 20px;
   display: grid;
   gap: 14px;
@@ -619,7 +619,7 @@ textarea {
   padding: 14px;
   border-radius: 18px;
   border: 1px solid var(--border-soft);
-  background: linear-gradient(145deg, rgba(239, 68, 68, 0.05) 0%, rgba(248, 113, 113, 0.03) 100%), var(--surface-low);
+  background: linear-gradient(145deg, rgba(249, 115, 22, 0.05) 0%, rgba(20, 184, 166, 0.03) 100%), var(--surface-low);
 }
 
 .mini-metrics strong {
@@ -640,7 +640,7 @@ textarea {
   padding: 14px;
   border-radius: 20px;
   border: 1px solid var(--border-soft);
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.08) 0%, rgba(248, 113, 113, 0.05) 50%, rgba(255, 255, 255, 0.3) 100%);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.08) 0%, rgba(20, 184, 166, 0.05) 50%, rgba(255, 255, 255, 0.3) 100%);
 }
 
 .sparkline-meta {
@@ -750,7 +750,7 @@ textarea {
   border-radius: 12px;
   border: 1px solid var(--border-strong);
   padding: 18px;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.06) 0%, rgba(248, 113, 113, 0.04) 100%), var(--surface-high);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.06) 0%, rgba(20, 184, 166, 0.04) 100%), var(--surface-high);
   display: grid;
   gap: 10px;
   transition: border-color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
@@ -813,7 +813,7 @@ textarea {
 .panel {
   border-radius: 16px;
   padding: 20px;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.04) 0%, rgba(248, 113, 113, 0.02) 100%), var(--surface-high);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.04) 0%, rgba(20, 184, 166, 0.02) 100%), var(--surface-high);
   animation: revealUp 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
 }
 
@@ -895,9 +895,9 @@ textarea {
   border-radius: 12px;
   border: 1px solid var(--border-soft);
   background:
-    radial-gradient(circle at top right, rgba(239, 68, 68, 0.15), transparent 28%),
-    radial-gradient(circle at bottom left, rgba(248, 113, 113, 0.1), transparent 24%),
-    linear-gradient(135deg, rgba(239, 68, 68, 0.04) 0%, rgba(248, 113, 113, 0.03) 100%),
+    radial-gradient(circle at top right, rgba(249, 115, 22, 0.15), transparent 28%),
+    radial-gradient(circle at bottom left, rgba(45, 212, 191, 0.1), transparent 24%),
+    linear-gradient(135deg, rgba(249, 115, 22, 0.04) 0%, rgba(20, 184, 166, 0.03) 100%),
     var(--surface-soft);
   padding: 16px;
   transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease, background-color 220ms ease;
@@ -946,7 +946,7 @@ textarea {
   stroke-width: 5.25;
   stroke-linecap: round;
   stroke-linejoin: round;
-  filter: drop-shadow(0 8px 16px rgba(220, 38, 38, 0.18));
+  filter: drop-shadow(0 8px 16px rgba(249, 115, 22, 0.18));
 }
 
 .line-chart-frame path {
@@ -965,7 +965,7 @@ textarea {
 .trend-dot:hover {
   fill: var(--accent-strong);
   stroke-width: 4.5;
-  filter: drop-shadow(0 8px 14px rgba(220, 38, 38, 0.22));
+  filter: drop-shadow(0 8px 14px rgba(249, 115, 22, 0.22));
 }
 
 .chart-axis {
@@ -996,7 +996,7 @@ textarea {
 .chart-summary-strip div {
   border: 1px solid var(--border-soft);
   border-radius: 10px;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(248, 113, 113, 0.03) 100%), var(--surface-high);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.05) 0%, rgba(20, 184, 166, 0.03) 100%), var(--surface-high);
   padding: 12px 14px;
   display: grid;
   gap: 4px;
@@ -1041,7 +1041,7 @@ textarea {
   border: 1px solid var(--border-soft);
   border-radius: 10px;
   padding: 12px 14px;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(248, 113, 113, 0.03) 100%), var(--surface-high);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.05) 0%, rgba(20, 184, 166, 0.03) 100%), var(--surface-high);
   display: grid;
   gap: 10px;
 }
@@ -1064,7 +1064,7 @@ textarea {
   border: 1px solid var(--border-soft);
   border-radius: 8px;
   padding: 10px;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.04) 0%, rgba(248, 113, 113, 0.02) 100%), var(--surface-soft);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.04) 0%, rgba(20, 184, 166, 0.02) 100%), var(--surface-soft);
   display: grid;
   gap: 4px;
 }
@@ -1101,7 +1101,7 @@ textarea {
   border: 1px solid var(--border-soft);
   border-radius: 10px;
   padding: 10px 11px;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, rgba(248, 113, 113, 0.03) 100%), var(--surface-high);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.05) 0%, rgba(20, 184, 166, 0.03) 100%), var(--surface-high);
   display: grid;
   gap: 3px;
   transition: border-color 180ms ease, transform 180ms ease, background-color 180ms ease;
@@ -1266,7 +1266,7 @@ textarea {
   padding: 14px;
   border: 1px solid var(--border-soft);
   border-radius: 12px;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.06) 0%, rgba(248, 113, 113, 0.04) 100%), var(--surface-high);
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.06) 0%, rgba(20, 184, 166, 0.04) 100%), var(--surface-high);
   box-shadow: 0 4px 12px rgba(15, 23, 42, 0.04);
 }
 
@@ -1566,7 +1566,7 @@ textarea {
   }
 
   .primary-button:hover {
-    box-shadow: 0 18px 30px rgba(220, 38, 38, 0.28);
+    box-shadow: 0 18px 30px rgba(249, 115, 22, 0.28);
   }
 }
 
