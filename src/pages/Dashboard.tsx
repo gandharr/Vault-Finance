@@ -80,41 +80,49 @@ export const Dashboard = () => {
         {/* Monthly Trend */}
         <div className="chart-container">
           <h3>Monthly Trend</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={monthlyTrend}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="month" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="income" fill="#00C49F" />
-              <Bar dataKey="expense" fill="#FF8042" />
-            </BarChart>
-          </ResponsiveContainer>
+          {monthlyTrend.length > 0 ? (
+            <ResponsiveContainer width="100%" height={300}>
+              <BarChart data={monthlyTrend}>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="month" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="income" fill="#00C49F" />
+                <Bar dataKey="expense" fill="#FF8042" />
+              </BarChart>
+            </ResponsiveContainer>
+          ) : (
+            <p className="chart-empty-state">Add transactions to see the monthly trend.</p>
+          )}
         </div>
 
         {/* Expense Breakdown */}
         <div className="chart-container">
           <h3>Expense Breakdown</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <PieChart>
-              <Pie
-                data={categoryBreakdown}
-                cx="50%"
-                cy="50%"
-                labelLine={false}
-                label={({ category, percent }) => `${category} ${(percent * 100).toFixed(0)}%`}
-                outerRadius={80}
-                fill="#8884d8"
-                dataKey="amount"
-              >
-                {categoryBreakdown.map((_, index) => (
-                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                ))}
-              </Pie>
-              <Tooltip />
-            </PieChart>
-          </ResponsiveContainer>
+          {categoryBreakdown.length > 0 ? (
+            <ResponsiveContainer width="100%" height={300}>
+              <PieChart>
+                <Pie
+                  data={categoryBreakdown}
+                  cx="50%"
+                  cy="50%"
+                  labelLine={false}
+                  label={({ category, percent }) => `${category} ${(percent * 100).toFixed(0)}%`}
+                  outerRadius={80}
+                  fill="#8884d8"
+                  dataKey="amount"
+                >
+                  {categoryBreakdown.map((_, index) => (
+                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
+          ) : (
+            <p className="chart-empty-state">Add an expense to see the breakdown.</p>
+          )}
         </div>
       </div>
 
@@ -133,7 +141,7 @@ export const Dashboard = () => {
           </thead>
           <tbody>
             {stats.recentTransactions.map(tx => (
-              <tr key={tx.id}>
+              <tr key={tx.id ?? `${tx.date}-${tx.category}-${tx.amount}`}>
                 <td>{new Date(tx.date).toLocaleDateString()}</td>
                 <td>{tx.category}</td>
                 <td>{tx.merchant}</td>

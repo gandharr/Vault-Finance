@@ -7,7 +7,6 @@ const router = Router()
 router.get('/stats', async (req: Request, res: Response) => {
   try {
     const transactions = await db.getTransactions()
-    const OPENING_BALANCE = 12840
 
     const totalIncome = transactions
       .filter(t => t.type === 'income')
@@ -17,7 +16,7 @@ router.get('/stats', async (req: Request, res: Response) => {
       .filter(t => t.type === 'expense')
       .reduce((sum, t) => sum + t.amount, 0)
 
-    const currentBalance = OPENING_BALANCE + totalIncome - totalExpense
+    const currentBalance = totalIncome - totalExpense
     const recentTransactions = [...transactions]
       .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
       .slice(0, 10)
