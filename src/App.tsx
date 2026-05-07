@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { authService } from './services'
+import { API_BASE_URL } from './config'
 import type { User } from './types'
 import { Navigation } from './components/Navigation'
 import { Dashboard } from './pages/Dashboard'
@@ -12,6 +13,7 @@ import './App.css'
 function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
+  const [apiHealthy, setApiHealthy] = useState<boolean | null>(null)
 
   useEffect(() => {
     const loadUser = async () => {
@@ -26,6 +28,18 @@ function App() {
     }
 
     loadUser()
+    // Quick health check for the backend so we can show a friendly message
+    const checkHealth = async () => {
+      try {
+        const resp = await fetch(`${API_BASE_URL.replace(/\/$/, '')}/health`, { method: 'GET' })
+        setApiHealthy(resp.ok)
+      } catch (err) {
+        console.error('Health check failed:', err)
+        setApiHealthy(false)
+      }
+    }
+
+    checkHealth()
   }, [])
 
   const handleAuthSuccess = () => {
@@ -46,6 +60,9 @@ function App() {
 
   return (
     <Router basename={import.meta.env.BASE_URL}>
+      {apiHealthy === false && (
+        <div className="api-down-banner">Backend unavailable — some features may not work.</div>
+      )}
       {currentUser ? (
         <>
           <Navigation onLogout={() => setCurrentUser(null)} />
