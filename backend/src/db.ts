@@ -1,7 +1,7 @@
 import type { Transaction, User } from './types'
 import { UserModel, TransactionModel } from './models'
 
-function normalizeTransaction(doc: any): Transaction {
+function normalizeTransaction(doc: any): Transaction | null {
   if (!doc) return null
   return {
     id: doc._id?.toString(),
@@ -32,7 +32,7 @@ export const db = {
   // Transaction operations
   async getTransactions(): Promise<Transaction[]> {
     const docs = await TransactionModel.find().lean()
-    return docs.map(normalizeTransaction)
+    return docs.map(normalizeTransaction).filter((t): t is Transaction => t !== null)
   },
 
   async getTransaction(id: string): Promise<Transaction | null> {
@@ -60,7 +60,7 @@ export const db = {
 
   async getTransactionsByType(type: 'income' | 'expense'): Promise<Transaction[]> {
     const docs = await TransactionModel.find({ type }).lean()
-    return docs.map(normalizeTransaction)
+    return docs.map(normalizeTransaction).filter((t): t is Transaction => t !== null)
   },
 
   async getTransactionsByDateRange(
@@ -70,6 +70,6 @@ export const db = {
     const docs = await TransactionModel.find({
       date: { $gte: startDate, $lte: endDate },
     }).lean()
-    return docs.map(normalizeTransaction)
+    return docs.map(normalizeTransaction).filter((t): t is Transaction => t !== null)
   },
 }
