@@ -15,7 +15,7 @@ export const Navigation = ({ onLogout }: NavigationProps) => {
     <nav className="navbar">
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          <img src="/favicon.svg" alt="Vault Finance Logo" className="logo-icon" />
+          <img src="/Vault-Finance/favicon.svg" alt="Vault Finance Logo" className="logo-icon" />
           <span>Vault Finance</span>
         </Link>
 

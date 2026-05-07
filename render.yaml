@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: vault-finance-api
+    runtime: node
+    startCommand: npm start
+    buildCommand: cd backend && npm install && npm run build
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3001
+      - key: MONGODB_URI
+        fromDatabase:
+          name: vault-finance-db
+          property: connectionString
+    
+databases:
+  - name: vault-finance-db
+    databaseName: vault-finance
+    version: latest
