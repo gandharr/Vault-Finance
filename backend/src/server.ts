@@ -1,9 +1,9 @@
 import express from 'express'
 import cors from 'cors'
-import { connectDB } from './mongodb'
-import authRoutes from './routes/auth'
-import transactionRoutes from './routes/transactions'
-import dashboardRoutes from './routes/dashboard'
+import { connectDB } from './mongodb.js'
+import authRoutes from './routes/auth.js'
+import transactionRoutes from './routes/transactions.js'
+import dashboardRoutes from './routes/dashboard.js'
 
 const app = express()
 const PORT = process.env.PORT || 3001

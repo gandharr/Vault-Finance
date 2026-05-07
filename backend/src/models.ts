@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from 'mongoose'
-import type { User, Transaction } from './types'
+import type { User, Transaction } from './types.js'
 
 // User Schema
 const userSchema = new Schema<User & Document>(

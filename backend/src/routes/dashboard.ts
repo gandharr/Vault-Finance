@@ -1,6 +1,6 @@
 import { Router, Request, Response } from 'express'
-import { db } from '../db'
-import type { DashboardStats } from '../types'
+import { db } from '../db.js'
+import type { DashboardStats } from '../types.js'
 
 const router = Router()
 
@@ -9,12 +9,12 @@ router.get('/stats', async (req: Request, res: Response) => {
     const transactions = await db.getTransactions()
 
     const totalIncome = transactions
-      .filter(t => t.type === 'income')
-      .reduce((sum, t) => sum + t.amount, 0)
+      .filter((t: any) => t.type === 'income')
+      .reduce((sum: number, t: any) => sum + t.amount, 0)
 
     const totalExpense = transactions
-      .filter(t => t.type === 'expense')
-      .reduce((sum, t) => sum + t.amount, 0)
+      .filter((t: any) => t.type === 'expense')
+      .reduce((sum: number, t: any) => sum + t.amount, 0)
 
     const currentBalance = totalIncome - totalExpense
     const recentTransactions = [...transactions]
@@ -47,7 +47,7 @@ router.get('/category-breakdown/:type', async (req: Request, res: Response) => {
     const transactions = await db.getTransactionsByType(type as 'income' | 'expense')
 
     const breakdown: Record<string, number> = {}
-    transactions.forEach(t => {
+    transactions.forEach((t: any) => {
       breakdown[t.category] = (breakdown[t.category] || 0) + t.amount
     })
 
@@ -68,7 +68,7 @@ router.get('/monthly-trend', async (req: Request, res: Response) => {
 
     const monthlyData: Record<string, { income: number; expense: number }> = {}
 
-    transactions.forEach(t => {
+    transactions.forEach((t: any) => {
       const date = new Date(t.date)
       const month = date.toISOString().slice(0, 7) // YYYY-MM
 
