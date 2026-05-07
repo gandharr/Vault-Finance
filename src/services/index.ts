@@ -1,14 +1,40 @@
 import axios from 'axios'
 import type { Transaction, TransactionDraft, User, AuthDraft, DashboardStats } from '../types'
-import { API_BASE_URL } from '../config'
+import { resolveApiBaseUrl } from '../config'
 
 const currentUserKey = 'vault-current-email'
 
 // Axios instance
 const api = axios.create({
-  baseURL: API_BASE_URL,
   timeout: 10000,
 })
+
+api.interceptors.request.use(async (config) => {
+  config.baseURL = await resolveApiBaseUrl()
+  return config
+})
+
+function getFriendlyError(error: unknown, fallbackMessage: string) {
+  if (axios.isAxiosError(error)) {
+    const responseMessage =
+      (error.response?.data as { error?: string; message?: string } | undefined)?.error ??
+      (error.response?.data as { error?: string; message?: string } | undefined)?.message
+
+    if (responseMessage) {
+      return new Error(responseMessage)
+    }
+
+    if (!error.response) {
+      return new Error(fallbackMessage)
+    }
+  }
+
+  if (error instanceof Error) {
+    return error
+  }
+
+  return new Error(fallbackMessage)
+}
 
 export const transactionService = {
   async getAll(): Promise<Transaction[]> {
@@ -17,7 +43,7 @@ export const transactionService = {
       return response.data
     } catch (error) {
       console.error('Failed to fetch transactions:', error)
-      throw error
+      throw getFriendlyError(error, 'Backend is unavailable. Please try again later.')
     }
   },
 
@@ -27,7 +53,7 @@ export const transactionService = {
       return response.data
     } catch (error) {
       console.error('Failed to fetch transaction:', error)
-      return null
+      throw getFriendlyError(error, 'Backend is unavailable. Please try again later.')
     }
   },
 
@@ -37,7 +63,7 @@ export const transactionService = {
       return response.data
     } catch (error) {
       console.error('Failed to create transaction:', error)
-      throw error
+      throw getFriendlyError(error, 'Backend is unavailable. Please try again later.')
     }
   },
 
@@ -47,7 +73,7 @@ export const transactionService = {
       return response.data
     } catch (error) {
       console.error('Failed to update transaction:', error)
-      throw error
+      throw getFriendlyError(error, 'Backend is unavailable. Please try again later.')
     }
   },
 
@@ -56,7 +82,7 @@ export const transactionService = {
       await api.delete(`/api/transactions/${id}`)
     } catch (error) {
       console.error('Failed to delete transaction:', error)
-      throw error
+      throw getFriendlyError(error, 'Backend is unavailable. Please try again later.')
     }
   },
 
@@ -66,7 +92,7 @@ export const transactionService = {
       return response.data
     } catch (error) {
       console.error('Failed to fetch transactions by type:', error)
-      throw error
+      throw getFriendlyError(error, 'Backend is unavailable. Please try again later.')
     }
   },
 
@@ -78,7 +104,7 @@ export const transactionService = {
       return response.data
     } catch (error) {
       console.error('Failed to fetch transactions by date range:', error)
-      throw error
+      throw getFriendlyError(error, 'Backend is unavailable. Please try again later.')
     }
   },
 }
@@ -91,7 +117,7 @@ export const authService = {
       return response.data
     } catch (error) {
       console.error('Login failed:', error)
-      throw error
+      throw getFriendlyError(error, 'Backend is unavailable. Please try again later.')
     }
   },
 
@@ -102,7 +128,7 @@ export const authService = {
       return response.data
     } catch (error) {
       console.error('Signup failed:', error)
-      throw error
+      throw getFriendlyError(error, 'Backend is unavailable. Please try again later.')
     }
   },
 
@@ -128,7 +154,7 @@ export const authService = {
       await api.post('/api/auth/reset-password', { email, newPassword })
     } catch (error) {
       console.error('Password reset failed:', error)
-      throw error
+      throw getFriendlyError(error, 'Backend is unavailable. Please try again later.')
     }
   },
 }
@@ -140,7 +166,7 @@ export const dashboardService = {
       return response.data
     } catch (error) {
       console.error('Failed to fetch dashboard stats:', error)
-      throw error
+      throw getFriendlyError(error, 'Backend is unavailable. Please try again later.')
     }
   },
 
@@ -150,7 +176,7 @@ export const dashboardService = {
       return response.data
     } catch (error) {
       console.error('Failed to fetch category breakdown:', error)
-      throw error
+      throw getFriendlyError(error, 'Backend is unavailable. Please try again later.')
     }
   },
 
@@ -160,7 +186,7 @@ export const dashboardService = {
       return response.data
     } catch (error) {
       console.error('Failed to fetch monthly trend:', error)
-      throw error
+      throw getFriendlyError(error, 'Backend is unavailable. Please try again later.')
     }
   },
 }

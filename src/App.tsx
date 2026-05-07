@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { authService } from './services'
-import { API_BASE_URL } from './config'
 import type { User } from './types'
 import { Navigation } from './components/Navigation'
 import { Dashboard } from './pages/Dashboard'
@@ -13,37 +12,20 @@ import './App.css'
 function App() {
   const [currentUser, setCurrentUser] = useState<User | null>(null)
   const [loading, setLoading] = useState(true)
-  const [apiHealthy, setApiHealthy] = useState<boolean | null>(null)
 
   useEffect(() => {
-    // First check backend health. If healthy, load the current user.
-    const checkHealthThenLoad = async () => {
+    const loadUser = async () => {
       try {
-        const resp = await fetch(`${API_BASE_URL.replace(/\/$/, '')}/health`, { method: 'GET' })
-        const healthy = resp.ok
-        setApiHealthy(healthy)
-
-        if (!healthy) {
-          setLoading(false)
-          return
-        }
-
-        try {
-          const user = await authService.getCurrentUser()
-          setCurrentUser(user)
-        } catch (error) {
-          console.error('Failed to load user:', error)
-        } finally {
-          setLoading(false)
-        }
+        const user = await authService.getCurrentUser()
+        setCurrentUser(user)
       } catch (err) {
-        console.error('Health check failed:', err)
-        setApiHealthy(false)
-        setLoading(false)
+        console.error('Failed to load user:', err)
       }
+
+      setLoading(false)
     }
 
-    checkHealthThenLoad()
+    loadUser()
   }, [])
 
   const handleAuthSuccess = () => {
@@ -60,32 +42,6 @@ function App() {
 
   if (loading) {
     return <div className="app-loading">Loading...</div>
-  }
-
-  if (apiHealthy === false || apiHealthy === null) {
-    return (
-      <div className="maintenance">
-        <h2>Service temporarily unavailable</h2>
-        <p>The backend API is currently unreachable. The site is running without demo data.</p>
-        <button onClick={async () => {
-          setLoading(true)
-          try {
-            const resp = await fetch(`${API_BASE_URL.replace(/\/$/, '')}/health`)
-            setApiHealthy(resp.ok)
-            if (resp.ok) {
-              setLoading(true)
-              const user = await authService.getCurrentUser()
-              setCurrentUser(user)
-            }
-          } catch (e) {
-            console.error('Retry health check failed', e)
-            setApiHealthy(false)
-          } finally {
-            setLoading(false)
-          }
-        }}>Retry</button>
-      </div>
-    )
   }
 
   return (
