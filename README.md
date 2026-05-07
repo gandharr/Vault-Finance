@@ -1,53 +1,242 @@
-# Vault Finance Dashboard
+# Vault Finance - Personal Finance Dashboard
 
-Vault Finance is a frontend-only finance dashboard built with React + TypeScript. The project focuses on clean UI design, interactive behavior, role-based frontend simulation, and thoughtful state management without relying on a backend.
+A full-stack personal finance management application built with React + TypeScript frontend, Express.js backend, and MongoDB database.
 
-## Demo Links
+## 🌟 Features
 
-- Repository: https://github.com/gandharr/Vault-Finance
-- Deployment: https://gandharr.github.io/Vault-Finance/
+- **Dashboard**: Overview with total balance, income/expense summary, and trend charts
+- **Transactions**: Manage income and expense transactions with search, filter, and sort
+- **Reports**: Analytics and visualizations of spending patterns
+- **Authentication**: Sign up, login, and session management
+- **Multi-Currency**: Display amounts in INR (₹)
+- **Theme Support**: Light and dark mode toggle
+- **Responsive Design**: Works on desktop and mobile devices
+- **Production Ready**: MongoDB persistence, Express API, cloud deployment ready
 
-## Screenshots
+## 🏗️ Tech Stack
 
-### Desktop View
+### Frontend
+- React 19.2.4 with Hooks
+- React Router 7.1.0 for navigation
+- TypeScript for type safety
+- Vite for fast development and building
+- Recharts for data visualization
+- Axios for API calls
+- Tailwind CSS for styling
 
-![Vault Finance Dashboard - Desktop](public/screenshots/dashboard-desktop.png)
+### Backend
+- Node.js + Express 4.18.2
+- TypeScript for type-safe backend
+- Mongoose 8+ for MongoDB ORM
+- CORS for cross-origin requests
+- Environment-based configuration
 
-### Mobile View
+### Database
+- MongoDB (local or MongoDB Atlas cloud)
+- Mongoose schemas for data validation
+- User and Transaction collections
 
-<div style="display: flex; gap: 30px; justify-content: center; align-items: flex-start; flex-wrap: wrap; margin: 20px 0;">
-  <div style="flex: 0 0 280px; text-align: center;">
-    <img src="public/screenshots/dashboard-mobile-1.jpeg" alt="Mobile Login Screen" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);" />
-    <p style="font-size: 13px; color: #666; margin-top: 8px;">Login & Access</p>
-  </div>
-  <div style="flex: 0 0 280px; text-align: center;">
-    <img src="public/screenshots/dashboard-mobile-2.jpeg" alt="Mobile Dashboard Screen" style="width: 100%; height: auto; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);" />
-    <p style="font-size: 13px; color: #666; margin-top: 8px;">Dashboard & Analytics</p>
-  </div>
-</div>
+## 📋 Prerequisites
 
-## Assignment Context
+- Node.js 18+ and npm
+- MongoDB (local installation or MongoDB Atlas account)
+- Git for version control
 
-This submission is intentionally designed to match the brief:
+## 🚀 Quick Start
 
-- Frontend-only implementation
-- Mock/static data support
-- Simulated role behavior on UI
-- Focus on UX, structure, and interaction quality rather than production backend logic
+### Option 1: MongoDB Atlas (Recommended - No local installation needed)
 
-## Key Features
+1. **Create free MongoDB Atlas account**: https://www.mongodb.com/cloud/atlas
+2. **Create cluster, get connection string**
+3. **Configure backend .env**:
+   ```
+   PORT=3001
+   NODE_ENV=development
+   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/vault-finance?retryWrites=true&w=majority
+   ```
+4. **Start backend**:
+   ```bash
+   cd backend
+   npm install
+   npm run dev
+   ```
+5. **Start frontend** (new terminal):
+   ```bash
+   npm install
+   npm run dev
+   ```
 
-- Dashboard overview with total balance, income, and expense summary cards
-- Time-based balance trend chart with hover point details
-- Categorical spending breakdown visualization
-- Interactive transaction section with search, filters, sorting, and role-aware actions
-- Simulated Viewer/Admin modes with Admin access gate via sign-in modal
-- Insights section covering highest spending category, monthly comparison, and observations
-- Theme switching (light/dark)
-- Workspace settings including demo reset and password reset flow simulation
-- Local persistence with localStorage
-- Empty-state handling and responsive behavior
-- Subtle motion and transition polish
+See [MONGODB_QUICKSTART.md](./MONGODB_QUICKSTART.md) for step-by-step instructions.
+
+### Option 2: Local MongoDB
+
+See [LOCAL_SETUP.md](./LOCAL_SETUP.md) for detailed setup instructions.
+
+## 📚 Documentation
+
+- **[MONGODB_QUICKSTART.md](./MONGODB_QUICKSTART.md)** - Quick MongoDB setup (5 min)
+- **[LOCAL_SETUP.md](./LOCAL_SETUP.md)** - Complete local development setup
+- **[MONGODB_SETUP.md](./MONGODB_SETUP.md)** - Detailed MongoDB guide
+- **[RENDER_DEPLOYMENT.md](./RENDER_DEPLOYMENT.md)** - Production deployment guide
+- **[backend/README.md](./backend/README.md)** - API documentation
+
+## 🎯 Project Structure
+
+```
+Vault-Finance/
+├── src/                          # Frontend React app
+│   ├── components/               # React components
+│   ├── services/                 # API service layer
+│   ├── App.tsx                   # Main app component
+│   └── main.tsx                  # Entry point
+├── backend/                      # Express API server
+│   ├── src/
+│   │   ├── mongodb.ts           # MongoDB connection
+│   │   ├── models.ts            # Mongoose schemas
+│   │   ├── db.ts                # Database operations
+│   │   ├── server.ts            # Express app setup
+│   │   ├── types.ts             # TypeScript interfaces
+│   │   └── routes/              # API endpoints
+│   ├── dist/                    # Compiled JavaScript
+│   └── package.json
+├── public/                       # Static assets
+├── MONGODB_QUICKSTART.md        # MongoDB 5-min setup
+├── LOCAL_SETUP.md               # Full local setup guide
+├── MONGODB_SETUP.md             # MongoDB detailed guide
+├── RENDER_DEPLOYMENT.md         # Production deployment
+└── render.yaml                  # Render deployment config
+```
+
+## 🔌 API Endpoints
+
+### Authentication
+- `POST /api/auth/signup` - Create new account
+- `POST /api/auth/login` - Login
+- `GET /api/auth/current` - Get logged-in user
+- `POST /api/auth/reset-password` - Reset password
+
+### Transactions
+- `GET /api/transactions` - Get all transactions
+- `GET /api/transactions/:id` - Get transaction by ID
+- `POST /api/transactions` - Create transaction
+- `PUT /api/transactions/:id` - Update transaction
+- `DELETE /api/transactions/:id` - Delete transaction
+- `GET /api/transactions/type/:type` - Filter by type
+
+### Dashboard
+- `GET /api/dashboard/stats` - Get statistics
+- `GET /api/dashboard/category-breakdown/:type` - Category breakdown
+- `GET /api/dashboard/monthly-trend` - Monthly trend data
+
+See [backend/README.md](./backend/README.md) for detailed API docs.
+
+## 🧪 Testing the Application
+
+1. **Frontend**: http://localhost:5173/Vault-Finance/
+2. **Backend Health**: http://localhost:3001/health
+3. **Sign up** with test credentials
+4. **Create transactions** in the transactions page
+5. **View analytics** in the reports page
+6. **Check database** via MongoDB Atlas or mongosh
+
+## 🌐 Deployment
+
+### Deploy to Render (Production)
+
+1. Push to GitHub
+2. See [RENDER_DEPLOYMENT.md](./RENDER_DEPLOYMENT.md)
+3. Backend deploys to Render with MongoDB Atlas
+4. Frontend deployed as static site
+5. Environment variables configured in Render dashboard
+
+## 📝 Environment Variables
+
+### Frontend (.env)
+```
+VITE_API_URL=http://localhost:3001              # Local development
+VITE_API_URL=https://vault-finance-api.onrender.com  # Production
+```
+
+### Backend (.env)
+```
+PORT=3001
+NODE_ENV=development
+MONGODB_URI=mongodb://localhost:27017/vault-finance
+# OR for MongoDB Atlas:
+# MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/vault-finance
+```
+
+## 🔒 Security Notes
+
+- Passwords should be hashed with bcrypt (currently plaintext - TODO)
+- Implement JWT authentication (currently using email in localStorage - TODO)
+- Add input validation and sanitization
+- Set up HTTPS for production
+- Use secure session cookies
+
+## 🚧 Future Improvements
+
+- [ ] Password hashing with bcrypt
+- [ ] JWT token authentication
+- [ ] User profile and settings page
+- [ ] Transaction edit/create forms
+- [ ] Budget alerts and notifications
+- [ ] Email notifications
+- [ ] Two-factor authentication
+- [ ] Advanced reporting and exports
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit changes (`git commit -m 'Add amazing feature'`)
+4. Push to branch (`git push origin feature/amazing-feature`)
+5. Open Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
+
+## 🆘 Support & Troubleshooting
+
+### MongoDB Connection Issues
+- Verify connection string in `.env`
+- Check MongoDB is running (local or Atlas)
+- For Atlas: whitelist your IP or use 0.0.0.0/0
+
+### Port Already in Use
+- Frontend port 5173: `npm run dev -- --port 5174`
+- Backend port 3001: Change `PORT` in backend `.env`
+
+### Frontend Can't Connect to Backend
+- Verify `VITE_API_URL` in frontend `.env`
+- Ensure backend is running
+- Check browser console for CORS errors
+
+## 📞 Quick Links
+
+- **Source Code**: [GitHub](https://github.com/gandharr/Vault-Finance)
+- **MongoDB Documentation**: https://docs.mongodb.com/
+- **React Documentation**: https://react.dev
+- **Express Documentation**: https://expressjs.com
+- **Render Documentation**: https://render.com/docs
+
+## 🎓 Learning Resources
+
+This project demonstrates:
+- Full-stack development with modern tools
+- React patterns and hooks
+- TypeScript for type safety
+- REST API design
+- MongoDB database design
+- Production deployment
+- Environment-based configuration
+- Service layer abstraction
+
+---
+
+**Last Updated**: 2024
+**Version**: 1.0.0 (MongoDB Backend)
 - Themed dropdown controls aligned with the dashboard surface style
 
 ## Tech Stack
