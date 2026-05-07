@@ -1,45 +1,63 @@
 # Vault Finance ✨
 
-<p align="center">
-  <img src="src/assets/hero.png" alt="Vault Finance hero" width="980" />
-</p>
+Vault Finance is a full-stack personal finance tracker with authentication, transaction management, dashboard analytics, and reporting views.
 
-<p align="center">
-  <strong>💼 A polished full-stack personal finance dashboard with a clean interface, live analytics, and a production backend.</strong>
-</p>
+This repository includes:
+- A React + TypeScript frontend (Vite)
+- A Node.js + Express + TypeScript backend
+- MongoDB Atlas persistence via Mongoose
+- GitHub Pages deployment for frontend
+- Railway deployment for backend API
 
-<p align="center">
-  <a href="https://gandharr.github.io/Vault-Finance/">Live Demo</a> •
-  <a href="#screenshots">Screenshots</a> •
-  <a href="#features">Features</a> •
-  <a href="#api-endpoints">API</a>
-</p>
+## 🚀 Live URLs
 
-Vault Finance helps you track money with a minimal, premium-feeling dashboard. It includes authentication, transaction management, analytics cards, trend charts, and a reports view, all backed by MongoDB Atlas and deployed with GitHub Pages + Railway.
+- Frontend (GitHub Pages): https://gandharr.github.io/Vault-Finance/
+- Backend (Railway): https://vault-finance-production.up.railway.app
+- Backend Health Check: https://vault-finance-production.up.railway.app/health
 
-## 🔗 Live Links
+## Table of Contents
 
-| Area | URL |
-| --- | --- |
-| Frontend | https://gandharr.github.io/Vault-Finance/ |
-| Backend | https://vault-finance-production.up.railway.app |
-| Health Check | https://vault-finance-production.up.railway.app/health |
+1. [Project Highlights](#project-highlights)
+2. [Screenshots](#screenshots)
+3. [Tech Stack](#tech-stack)
+4. [Repository Structure](#repository-structure)
+5. [Feature Overview](#feature-overview)
+6. [API Endpoints](#api-endpoints)
+7. [Local Development Setup](#local-development-setup)
+8. [Environment Variables](#environment-variables)
+9. [Build and Deployment](#build-and-deployment)
+10. [Troubleshooting](#troubleshooting)
+11. [Security Notes](#security-notes)
+12. [Roadmap Ideas](#roadmap-ideas)
+13. [License](#license)
 
-## 🌟 What Makes It Stand Out
+## ✨ Project Highlights
 
-- 🎨 Elegant, responsive dashboard UI with soft gradients and card-based layout
-- 🔐 Login/signup flow with persistent current-user state
-- 🗃️ Real transaction storage in MongoDB Atlas
-- 💸 Income vs expense tracking with totals and balance calculation
-- 📈 Monthly trend chart and expense breakdown visualization
-- 🧯 Clean handling for backend downtime, validation, and missing data
-- 🚫 No demo fallback in the user-facing experience
+- Full authentication flow: signup, login, current user lookup, password reset
+- Transaction CRUD with income/expense support
+- Dashboard statistics:
+  - Total income
+  - Total expense
+  - Current balance
+  - Recent transactions
+- Category breakdown analytics
+- Monthly trend analytics
+- No demo fallback data in production flow
+- Friendly frontend error messages for backend unavailability
 
 ## 📸 Screenshots
 
-| Desktop | Mobile 1 | Mobile 2 |
-| --- | --- | --- |
-| ![Desktop dashboard](public/screenshots/dashboard-desktop.png) | ![Mobile dashboard 1](public/screenshots/dashboard-mobile-1.jpeg) | ![Mobile dashboard 2](public/screenshots/dashboard-mobile-2.jpeg) |
+### Desktop Dashboard
+
+![Vault Finance Dashboard Desktop](public/screenshots/dashboard-desktop.png)
+
+### Mobile Dashboard (Variant 1)
+
+![Vault Finance Dashboard Mobile 1](public/screenshots/dashboard-mobile-1.jpeg)
+
+### Mobile Dashboard (Variant 2)
+
+![Vault Finance Dashboard Mobile 2](public/screenshots/dashboard-mobile-2.jpeg)
 
 ## 🛠️ Tech Stack
 
@@ -62,91 +80,103 @@ Vault Finance helps you track money with a minimal, premium-feeling dashboard. I
 - dotenv
 - cors
 
-### Deployment and Tooling
+### Tooling
 
-- GitHub Actions for Pages deployment
-- Railway for backend hosting
-- ESLint for code quality
+- ESLint
+- GitHub Actions (Pages deployment)
+- Railway (backend hosting)
 
-## ✨ Features
+## 🔧 Feature Overview
 
-### 🔐 Authentication
+### 1. Authentication
 
-- Signup
-- Login
-- Current user lookup
-- Password reset
-- Local persistence of the current user email
+Backend routes under `/api/auth`:
+- `POST /login`
+- `POST /signup`
+- `GET /current?email=...`
+- `POST /reset-password`
 
-### 💳 Transactions
+Frontend stores the active user email in local storage under key `vault-current-email`.
 
-- Create income and expense entries
-- View all transactions
-- Update existing entries
-- Delete transactions
-- Filter by income or expense type
+### 2. Transactions
 
-### 📊 Dashboard Analytics
+Backend routes under `/api/transactions`:
+- `GET /`
+- `GET /:id`
+- `POST /`
+- `PUT /:id`
+- `DELETE /:id`
+- `GET /type/:type`
 
-- Current balance
-- Total income
-- Total expenses
-- Transaction count
-- Monthly trend chart
-- Expense breakdown chart
+### 3. Dashboard Analytics
 
-### 🧾 Reports View
+Backend routes under `/api/dashboard`:
+- `GET /stats`
+- `GET /category-breakdown/:type`
+- `GET /monthly-trend`
 
-- Central place for analytics-focused summaries
-- Designed to keep financial reporting readable on desktop and mobile
+### 4. Health Monitoring
 
-## 🧩 API Endpoints
-
-Base URL:
-
-```text
-https://vault-finance-production.up.railway.app
-```
-
-### Health
-
-```http
-GET /health
-```
-
-Response:
+- `GET /health` returns:
 
 ```json
 { "status": "ok" }
 ```
 
+## 🧩 API Endpoints
+
+Base URL (production):
+
+```text
+https://vault-finance-production.up.railway.app
+```
+
 ### Auth
 
 - `POST /api/auth/login`
+  - Body: `{ "email": "string", "password": "string" }`
 - `POST /api/auth/signup`
+  - Body: `{ "email": "string", "fullName": "string", "password": "string" }`
 - `GET /api/auth/current?email=user@example.com`
 - `POST /api/auth/reset-password`
+  - Body: `{ "email": "string", "newPassword": "string" }`
 
 ### Transactions
 
 - `GET /api/transactions`
 - `GET /api/transactions/:id`
 - `POST /api/transactions`
+  - Body:
+
+```json
+{
+  "date": "2026-05-08",
+  "amount": 1200,
+  "category": "Salary",
+  "type": "income",
+  "merchant": "Employer",
+  "note": "Monthly salary"
+}
+```
+
 - `PUT /api/transactions/:id`
 - `DELETE /api/transactions/:id`
-- `GET /api/transactions/type/:type`
+- `GET /api/transactions/type/income`
+- `GET /api/transactions/type/expense`
 
 ### Dashboard
 
 - `GET /api/dashboard/stats`
-- `GET /api/dashboard/category-breakdown/:type`
+- `GET /api/dashboard/category-breakdown/income`
+- `GET /api/dashboard/category-breakdown/expense`
 - `GET /api/dashboard/monthly-trend`
 
-## 🗂️ Repository Structure
+## 📁 Repository Structure
 
 ```text
 Vault-Finance/
-  .github/workflows/deploy.yml
+  .github/workflows/
+    deploy.yml
   backend/
     src/
       db.ts
@@ -170,34 +200,40 @@ Vault-Finance/
     types/
     App.tsx
     config.ts
+  package.json
   README.md
 ```
 
-## 🚀 Local Development
+## 🚀 Local Development Setup
 
-### ✅ Prerequisites
+## Prerequisites
 
 - Node.js 20+
 - npm 10+
-- MongoDB Atlas or local MongoDB instance
+- MongoDB Atlas cluster (or local MongoDB)
 
-### 📥 Clone
+### 1. Clone
 
 ```bash
 git clone https://github.com/gandharr/Vault-Finance.git
 cd Vault-Finance
 ```
 
-### 📦 Install Dependencies
+### 2. Install Frontend Dependencies
 
 ```bash
 npm install
+```
+
+### 3. Install Backend Dependencies
+
+```bash
 cd backend
 npm install
 cd ..
 ```
 
-### 🔧 Backend Environment
+### 4. Configure Backend Environment
 
 Create `backend/.env`:
 
@@ -206,43 +242,40 @@ MONGODB_URI=your_mongodb_connection_string
 PORT=3001
 ```
 
-### ▶️ Run Locally
-
-Backend:
+### 5. Run Backend
 
 ```bash
 cd backend
 npm run dev
 ```
 
-Frontend:
+### 6. Run Frontend
 
 ```bash
 npm run dev
 ```
 
-Frontend dev server usually runs at `http://localhost:5173`.
+Frontend default: `http://localhost:5173`
 
 ## 🔑 Environment Variables
 
 ### Frontend
 
+- `VITE_API_URL` (required in production build)
+  - Example:
+
 ```env
 VITE_API_URL=https://vault-finance-production.up.railway.app
 ```
 
-Optional:
-
-```env
-VITE_API_URLS=https://vault-finance-production.up.railway.app
-```
+- `VITE_API_URLS` (optional, comma-separated fallback URLs)
 
 ### Backend
 
-- `MONGODB_URI` - required
-- `PORT` - optional for Railway/local overrides
+- `MONGODB_URI` (required)
+- `PORT` (optional, Railway provides `PORT` automatically)
 
-## 🚢 Build and Deploy
+## 🚢 Build and Deployment
 
 ### Frontend Build
 
@@ -257,58 +290,72 @@ cd backend
 npm run build
 ```
 
-### 🌍 GitHub Pages
+### GitHub Pages Deployment
 
-The frontend is deployed automatically from `.github/workflows/deploy.yml` on pushes to `main`.
+Frontend deploy is handled by `.github/workflows/deploy.yml` on push to `main`.
 
-### 🚂 Railway
+Key workflow env:
 
-The backend is deployed from the `backend/` directory with:
+```yaml
+env:
+  VITE_API_URL: https://vault-finance-production.up.railway.app
+```
+
+### Railway Deployment
+
+Backend is deployed from `backend/` with scripts:
 
 - Build: `npm install && npm run build`
 - Start: `npm start`
 
 ## 🧪 Troubleshooting
 
-### Backend unavailable message
+### 1. Frontend shows "Backend is unavailable"
 
 Check:
-- Railway service is running
-- `MONGODB_URI` is set correctly
-- Browser cache is cleared
-- GitHub Pages has rebuilt after config changes
+- Backend health URL is live
+- Frontend bundle uses latest `VITE_API_URL`
+- Browser cache is cleared (`Ctrl+F5`)
 
-### CORS or network error
+### 2. CORS / Network Error in browser
 
-Usually means the frontend is still pointing to an old API URL. Hard refresh the browser and confirm the deployed workflow uses the production Railway domain.
+Usually indicates frontend is calling wrong domain or dead endpoint.
 
-### MongoDB connection errors
+Fix:
+- Verify `VITE_API_URL` in workflow
+- Trigger GitHub Pages redeploy
+- Use cache-busted URL for testing: `?v=2`
 
-If Railway cannot connect:
-- Verify Atlas Network Access
-- Confirm the cluster user and password
-- Temporarily allow `0.0.0.0/0` while testing
+### 3. MongoDB connection error on Railway
 
-### TypeScript module resolution issues
+Symptoms:
+- `MongooseServerSelectionError`
 
-If using Node16 module resolution, relative imports in ESM output need `.js` extensions in the source files.
+Fix:
+- Confirm `MONGODB_URI` in Railway Variables
+- Ensure Atlas Network Access allows Railway (temporary: `0.0.0.0/0`)
+
+### 4. TypeScript build errors with Node16 module resolution
+
+If using `moduleResolution: node16`, relative imports must include `.js` extension in TS source for runtime ESM output.
 
 ## 🔒 Security Notes
 
-- Never commit secrets into the repo.
-- Keep production credentials in Railway variables and local `.env` files.
-- Use least-privilege database users in MongoDB Atlas.
-- For a production-ready auth system, replace plain password checks with hashing and signed sessions or JWTs.
+- Do not commit secrets in repository.
+- Keep `MONGODB_URI` in Railway variables or local `.env` only.
+- For production, tighten Atlas IP access and use least privilege users.
+- Current auth is basic email/password check; for production-grade auth, migrate to hashed passwords and JWT/session tokens.
 
 ## 🗺️ Roadmap Ideas
 
 - Password hashing with `bcrypt`
-- JWT/session-based authentication
-- Better filtering and search for transactions
-- CSV and PDF export
-- Pagination for large histories
-- Automated tests and CI checks
+- JWT-based auth and route protection
+- Role-based authorization
+- Pagination and filtering for transactions
+- Export reports to CSV/PDF
+- Unit and integration tests
+- CI checks for backend and frontend builds
 
 ## 📜 License
 
-See [LICENSE](LICENSE) for details.
+This project is licensed under the terms in [LICENSE](LICENSE).
