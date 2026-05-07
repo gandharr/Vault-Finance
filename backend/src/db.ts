@@ -1,6 +1,19 @@
 import type { Transaction, User } from './types'
 import { UserModel, TransactionModel } from './models'
 
+function normalizeTransaction(doc: any): Transaction {
+  if (!doc) return null
+  return {
+    id: doc._id?.toString(),
+    date: doc.date,
+    amount: doc.amount,
+    category: doc.category,
+    type: doc.type,
+    merchant: doc.merchant,
+    note: doc.note,
+  }
+}
+
 export const db = {
   // User operations
   async getUser(email: string): Promise<User | null> {
@@ -18,23 +31,27 @@ export const db = {
 
   // Transaction operations
   async getTransactions(): Promise<Transaction[]> {
-    return TransactionModel.find().lean()
+    const docs = await TransactionModel.find().lean()
+    return docs.map(normalizeTransaction)
   },
 
   async getTransaction(id: string): Promise<Transaction | null> {
-    return TransactionModel.findById(id).lean()
+    const doc = await TransactionModel.findById(id).lean()
+    return normalizeTransaction(doc)
   },
 
   async createTransaction(transaction: Omit<Transaction, 'id'>): Promise<Transaction> {
     const newTransaction = new TransactionModel(transaction)
-    return newTransaction.save()
+    const saved = await newTransaction.save()
+    return normalizeTransaction(saved)
   },
 
   async updateTransaction(
     id: string,
     updates: Partial<Transaction>
   ): Promise<Transaction | null> {
-    return TransactionModel.findByIdAndUpdate(id, updates, { new: true }).lean()
+    const doc = await TransactionModel.findByIdAndUpdate(id, updates, { new: true }).lean()
+    return normalizeTransaction(doc)
   },
 
   async deleteTransaction(id: string): Promise<void> {
@@ -42,15 +59,17 @@ export const db = {
   },
 
   async getTransactionsByType(type: 'income' | 'expense'): Promise<Transaction[]> {
-    return TransactionModel.find({ type }).lean()
+    const docs = await TransactionModel.find({ type }).lean()
+    return docs.map(normalizeTransaction)
   },
 
   async getTransactionsByDateRange(
     startDate: string,
     endDate: string
   ): Promise<Transaction[]> {
-    return TransactionModel.find({
+    const docs = await TransactionModel.find({
       date: { $gte: startDate, $lte: endDate },
     }).lean()
+    return docs.map(normalizeTransaction)
   },
 }

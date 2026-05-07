@@ -1637,6 +1637,10 @@ textarea {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .breakdown-row {
     grid-template-columns: 1fr;
   }
@@ -1668,6 +1672,10 @@ textarea {
   .transaction-row {
     grid-template-columns: 1fr;
     align-items: start;
+  }
+
+  .filters {
+    grid-template-columns: 1fr;
   }
 
   .transaction-meta,
@@ -2056,18 +2064,22 @@ textarea {
 
 .filters {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: minmax(220px, 0.95fr) minmax(220px, 0.95fr) minmax(280px, 1.2fr);
   gap: 1rem;
+  align-items: end;
   margin-bottom: 1.5rem;
-  padding: 1rem;
+  padding: 1.1rem;
   background: var(--surface-soft);
-  border-radius: 8px;
+  border: 1px solid var(--border-soft);
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
 }
 
 .filter-group {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.55rem;
+  min-width: 0;
 }
 
 .filter-group label {
@@ -2076,17 +2088,40 @@ textarea {
   color: var(--text-strong);
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .filter-group select,
 .search-input {
-  padding: 0.75rem;
+  width: 100%;
+  min-height: 52px;
+  padding: 0.85rem 1rem;
   border: 1px solid var(--border-soft);
-  border-radius: 6px;
+  border-radius: 10px;
   background: var(--surface-high);
   color: var(--text-strong);
+  box-sizing: border-box;
 }
 
 .search-input {
   grid-column: auto / span 1;
+}
+
+.filter-search-group {
+  align-self: end;
+}
+
+.filter-search-group .search-input {
+  height: 52px;
 }
 
 .transactions-list {
