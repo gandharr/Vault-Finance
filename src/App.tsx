@@ -62,7 +62,7 @@ function App() {
     return <div className="app-loading">Loading...</div>
   }
 
-  if (apiHealthy === false) {
+  if (apiHealthy === false || apiHealthy === null) {
     return (
       <div className="maintenance">
         <h2>Service temporarily unavailable</h2>
@@ -90,7 +90,7 @@ function App() {
 
   return (
     <Router basename={import.meta.env.BASE_URL}>
-      {apiHealthy === false && (
+      {!apiHealthy && (
         <div className="api-down-banner">Backend unavailable — some features may not work.</div>
       )}
       {currentUser ? (
