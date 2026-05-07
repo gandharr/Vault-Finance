@@ -230,7 +230,8 @@ export const Transactions = () => {
           </select>
         </div>
 
-        <div className="filter-group">
+        <div className="filter-group filter-search-group">
+          <label className="sr-only">Search transactions</label>
           <input
             type="text"
             placeholder="Search by merchant, category, or note..."
