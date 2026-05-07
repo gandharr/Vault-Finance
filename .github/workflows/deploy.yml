@@ -7,7 +7,7 @@ name: Deploy to GitHub Pages
 
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-  VITE_API_URL: https://YOUR-RAILWAY-SERVICE.up.railway.app
+  VITE_API_URL: https://vault-finance.up.railway.app
 
 permissions:
   contents: read
