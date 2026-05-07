@@ -1,5 +1,7 @@
+import 'dotenv/config'
 import mongoose from 'mongoose'
 
+// Load MongoDB URI from environment (backend/.env) or fallback to local
 const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/vault-finance'
 
 export async function connectDB() {
