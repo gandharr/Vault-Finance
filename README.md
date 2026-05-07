@@ -51,13 +51,9 @@ This repository includes:
 
 ![Vault Finance Dashboard Desktop](public/screenshots/dashboard-desktop.png)
 
-### Mobile Dashboard (Variant 1)
+### Mobile Dashboard
 
 ![Vault Finance Dashboard Mobile 1](public/screenshots/dashboard-mobile-1.jpeg)
-
-### Mobile Dashboard (Variant 2)
-
-![Vault Finance Dashboard Mobile 2](public/screenshots/dashboard-mobile-2.jpeg)
 
 ## Tech Stack
 
