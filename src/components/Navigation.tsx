@@ -6,6 +6,8 @@ interface NavigationProps {
 }
 
 export const Navigation = ({ onLogout }: NavigationProps) => {
+  const logoSrc = `${import.meta.env.BASE_URL}favicon.svg`
+
   const handleLogout = () => {
     authService.logout()
     onLogout()
@@ -15,7 +17,7 @@ export const Navigation = ({ onLogout }: NavigationProps) => {
     <nav className="navbar">
       <div className="nav-container">
         <Link to="/" className="nav-logo">
-          <img src="/Vault-Finance/favicon.svg" alt="Vault Finance Logo" className="logo-icon" />
+          <img src={logoSrc} alt="Vault Finance Logo" className="logo-icon" />
           <span>Vault Finance</span>
         </Link>
 

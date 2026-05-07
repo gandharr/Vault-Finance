@@ -114,8 +114,12 @@ export const sampleTransactions: Transaction[] = [
 ]
 
 export function initializeSampleData() {
-  const stored = localStorage.getItem(storageKey)
-  if (!stored) {
-    localStorage.setItem(storageKey, JSON.stringify(sampleTransactions))
+  try {
+    const stored = localStorage.getItem(storageKey)
+    if (!stored) {
+      localStorage.setItem(storageKey, JSON.stringify(sampleTransactions))
+    }
+  } catch {
+    // Storage can be unavailable in some browser contexts; the app still renders without seed data.
   }
 }
