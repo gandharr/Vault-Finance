@@ -90,9 +90,6 @@ function App() {
 
   return (
     <Router basename={import.meta.env.BASE_URL}>
-      {!apiHealthy && (
-        <div className="api-down-banner">Backend unavailable — some features may not work.</div>
-      )}
       {currentUser ? (
         <>
           <Navigation onLogout={() => setCurrentUser(null)} />
