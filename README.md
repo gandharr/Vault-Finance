@@ -1,11 +1,11 @@
-# Vault Finance
+# Vault Finance ✨
 
 <p align="center">
   <img src="src/assets/hero.png" alt="Vault Finance hero" width="980" />
 </p>
 
 <p align="center">
-  <strong>A polished full-stack personal finance dashboard with a clean interface, live analytics, and a production backend.</strong>
+  <strong>💼 A polished full-stack personal finance dashboard with a clean interface, live analytics, and a production backend.</strong>
 </p>
 
 <p align="center">
@@ -17,7 +17,7 @@
 
 Vault Finance helps you track money with a minimal, premium-feeling dashboard. It includes authentication, transaction management, analytics cards, trend charts, and a reports view, all backed by MongoDB Atlas and deployed with GitHub Pages + Railway.
 
-## Live Links
+## 🔗 Live Links
 
 | Area | URL |
 | --- | --- |
@@ -25,23 +25,23 @@ Vault Finance helps you track money with a minimal, premium-feeling dashboard. I
 | Backend | https://vault-finance-production.up.railway.app |
 | Health Check | https://vault-finance-production.up.railway.app/health |
 
-## What Makes It Stand Out
+## 🌟 What Makes It Stand Out
 
-- Elegant, responsive dashboard UI with soft gradients and card-based layout
-- Login/signup flow with persistent current-user state
-- Real transaction storage in MongoDB Atlas
-- Income vs expense tracking with totals and balance calculation
-- Monthly trend chart and expense breakdown visualization
-- Clean handling for backend downtime, validation, and missing data
-- No demo fallback in the user-facing experience
+- 🎨 Elegant, responsive dashboard UI with soft gradients and card-based layout
+- 🔐 Login/signup flow with persistent current-user state
+- 🗃️ Real transaction storage in MongoDB Atlas
+- 💸 Income vs expense tracking with totals and balance calculation
+- 📈 Monthly trend chart and expense breakdown visualization
+- 🧯 Clean handling for backend downtime, validation, and missing data
+- 🚫 No demo fallback in the user-facing experience
 
-## Screenshots
+## 📸 Screenshots
 
 | Desktop | Mobile 1 | Mobile 2 |
 | --- | --- | --- |
 | ![Desktop dashboard](public/screenshots/dashboard-desktop.png) | ![Mobile dashboard 1](public/screenshots/dashboard-mobile-1.jpeg) | ![Mobile dashboard 2](public/screenshots/dashboard-mobile-2.jpeg) |
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 ### Frontend
 
@@ -68,9 +68,9 @@ Vault Finance helps you track money with a minimal, premium-feeling dashboard. I
 - Railway for backend hosting
 - ESLint for code quality
 
-## Features
+## ✨ Features
 
-### Authentication
+### 🔐 Authentication
 
 - Signup
 - Login
@@ -78,7 +78,7 @@ Vault Finance helps you track money with a minimal, premium-feeling dashboard. I
 - Password reset
 - Local persistence of the current user email
 
-### Transactions
+### 💳 Transactions
 
 - Create income and expense entries
 - View all transactions
@@ -86,7 +86,7 @@ Vault Finance helps you track money with a minimal, premium-feeling dashboard. I
 - Delete transactions
 - Filter by income or expense type
 
-### Dashboard Analytics
+### 📊 Dashboard Analytics
 
 - Current balance
 - Total income
@@ -95,12 +95,12 @@ Vault Finance helps you track money with a minimal, premium-feeling dashboard. I
 - Monthly trend chart
 - Expense breakdown chart
 
-### Reports View
+### 🧾 Reports View
 
 - Central place for analytics-focused summaries
 - Designed to keep financial reporting readable on desktop and mobile
 
-## API Endpoints
+## 🧩 API Endpoints
 
 Base URL:
 
@@ -142,7 +142,7 @@ Response:
 - `GET /api/dashboard/category-breakdown/:type`
 - `GET /api/dashboard/monthly-trend`
 
-## Repository Structure
+## 🗂️ Repository Structure
 
 ```text
 Vault-Finance/
@@ -173,22 +173,22 @@ Vault-Finance/
   README.md
 ```
 
-## Local Development
+## 🚀 Local Development
 
-### Prerequisites
+### ✅ Prerequisites
 
 - Node.js 20+
 - npm 10+
 - MongoDB Atlas or local MongoDB instance
 
-### Clone
+### 📥 Clone
 
 ```bash
 git clone https://github.com/gandharr/Vault-Finance.git
 cd Vault-Finance
 ```
 
-### Install Dependencies
+### 📦 Install Dependencies
 
 ```bash
 npm install
@@ -197,7 +197,7 @@ npm install
 cd ..
 ```
 
-### Backend Environment
+### 🔧 Backend Environment
 
 Create `backend/.env`:
 
@@ -206,7 +206,7 @@ MONGODB_URI=your_mongodb_connection_string
 PORT=3001
 ```
 
-### Run Locally
+### ▶️ Run Locally
 
 Backend:
 
@@ -223,7 +223,7 @@ npm run dev
 
 Frontend dev server usually runs at `http://localhost:5173`.
 
-## Environment Variables
+## 🔑 Environment Variables
 
 ### Frontend
 
@@ -242,7 +242,7 @@ VITE_API_URLS=https://vault-finance-production.up.railway.app
 - `MONGODB_URI` - required
 - `PORT` - optional for Railway/local overrides
 
-## Build and Deploy
+## 🚢 Build and Deploy
 
 ### Frontend Build
 
@@ -257,18 +257,18 @@ cd backend
 npm run build
 ```
 
-### GitHub Pages
+### 🌍 GitHub Pages
 
 The frontend is deployed automatically from `.github/workflows/deploy.yml` on pushes to `main`.
 
-### Railway
+### 🚂 Railway
 
 The backend is deployed from the `backend/` directory with:
 
 - Build: `npm install && npm run build`
 - Start: `npm start`
 
-## Troubleshooting
+## 🧪 Troubleshooting
 
 ### Backend unavailable message
 
@@ -293,14 +293,14 @@ If Railway cannot connect:
 
 If using Node16 module resolution, relative imports in ESM output need `.js` extensions in the source files.
 
-## Security Notes
+## 🔒 Security Notes
 
 - Never commit secrets into the repo.
 - Keep production credentials in Railway variables and local `.env` files.
 - Use least-privilege database users in MongoDB Atlas.
 - For a production-ready auth system, replace plain password checks with hashing and signed sessions or JWTs.
 
-## Roadmap Ideas
+## 🗺️ Roadmap Ideas
 
 - Password hashing with `bcrypt`
 - JWT/session-based authentication
@@ -309,6 +309,6 @@ If using Node16 module resolution, relative imports in ESM output need `.js` ext
 - Pagination for large histories
 - Automated tests and CI checks
 
-## License
+## 📜 License
 
 See [LICENSE](LICENSE) for details.
