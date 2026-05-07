@@ -1,6 +1,5 @@
-import { Transaction, TransactionDraft, User, AuthDraft, DashboardStats } from '../types'
+import type { Transaction, TransactionDraft, User, AuthDraft, DashboardStats } from '../types'
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3000/api'
 const storageKey = 'zorvyn-finance-dashboard-v1'
 const usersKey = 'vault-users-db'
 const currentUserKey = 'vault-current-email'
@@ -153,7 +152,7 @@ export const dashboardService = {
     }))
   },
 
-  async getMonthlyTrend(months: number = 12) {
+  async getMonthlyTrend() {
     const transactions = await transactionService.getAll()
     const trend: Record<string, { income: number; expense: number }> = {}
     

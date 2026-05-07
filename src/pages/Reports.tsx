@@ -11,11 +11,8 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  LineChart,
-  Line,
 } from 'recharts'
 import { dashboardService, transactionService } from '../services'
-import { Transaction } from '../types'
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF6B6B', '#8884d8', '#82ca9d']
 
@@ -139,7 +136,7 @@ export const Reports = () => {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value) => `$${value.toFixed(2)}`} />
+                <Tooltip formatter={(value: any) => `$${Number(value).toFixed(2)}`} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -165,7 +162,7 @@ export const Reports = () => {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value) => `$${value.toFixed(2)}`} />
+                <Tooltip formatter={(value: any) => `$${Number(value).toFixed(2)}`} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -180,7 +177,7 @@ export const Reports = () => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="month" />
             <YAxis />
-            <Tooltip formatter={(value) => `$${value.toFixed(2)}`} />
+            <Tooltip formatter={(value: any) => `$${Number(value).toFixed(2)}`} />
             <Legend />
             <Bar dataKey="income" fill="#00C49F" name="Income" />
             <Bar dataKey="expense" fill="#FF8042" name="Expense" />
@@ -196,7 +193,7 @@ export const Reports = () => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="category" />
             <YAxis />
-            <Tooltip formatter={(value) => `$${value.toFixed(2)}`} />
+            <Tooltip formatter={(value: any) => `$${Number(value).toFixed(2)}`} />
             <Bar dataKey="amount" fill="#FF8042" />
           </BarChart>
         </ResponsiveContainer>

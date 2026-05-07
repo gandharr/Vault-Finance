@@ -1,7 +1,5 @@
 import { useEffect, useState } from 'react'
 import {
-  LineChart,
-  Line,
   PieChart,
   Pie,
   Cell,
@@ -15,7 +13,7 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import { dashboardService } from '../services'
-import { DashboardStats } from '../types'
+import type { DashboardStats } from '../types'
 
 const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#FF6B6B']
 

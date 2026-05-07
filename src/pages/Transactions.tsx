@@ -1,5 +1,6 @@
-import { useEffect, useState, FormEvent } from 'react'
-import { Transaction, TransactionDraft, TransactionType } from '../types'
+import { useEffect, useState } from 'react'
+import type { FormEvent } from 'react'
+import type { Transaction, TransactionDraft } from '../types'
 import { transactionService } from '../services'
 
 export const Transactions = () => {

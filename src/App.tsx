@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { authService } from './services'
-import { User } from './types'
+import type { User } from './types'
 import { Navigation } from './components/Navigation'
 import { Dashboard } from './pages/Dashboard'
 import { Transactions } from './pages/Transactions'

@@ -1,6 +1,7 @@
-import { useState, FormEvent } from 'react'
+import { useState } from 'react'
+import type { FormEvent } from 'react'
 import { authService } from '../services'
-import { AuthMode, AuthDraft } from '../types'
+import type { AuthMode, AuthDraft } from '../types'
 
 interface AuthPageProps {
   onAuthSuccess: () => void
