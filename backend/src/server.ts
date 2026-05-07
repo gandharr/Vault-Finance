@@ -33,9 +33,9 @@ async function startServer() {
   try {
     await connectDB()
     app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`)
-      console.log(`📊 Health check: http://localhost:${PORT}/health`)
-      console.log(`💾 MongoDB URI: ${process.env.MONGODB_URI || 'mongodb://localhost:27017/vault-finance'}`)
+      console.log(`🚀 Server running on port ${PORT}`)
+      console.log(`📊 Health check ready on /health`)
+      console.log(`💾 MongoDB URI configured: ${Boolean(process.env.MONGODB_URI)}`)
     })
   } catch (error) {
     console.error('❌ Failed to start server:', error)
