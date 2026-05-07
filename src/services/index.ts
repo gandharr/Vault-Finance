@@ -7,8 +7,7 @@ const currentUserKey = 'vault-current-email'
 const demoDismissedKey = 'vault-demo-dismissed'
 const demoUsersKey = 'vault-demo-users-v1'
 const demoTransactionsKey = 'zorvyn-finance-dashboard-v1'
-const isGitHubPages = typeof window !== 'undefined' && window.location.hostname.endsWith('github.io')
-const useDemoData = isGitHubPages
+const useDemoData = (typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.VITE_ENABLE_DEMO === 'true')
 
 // Axios instance
 const api = axios.create({
