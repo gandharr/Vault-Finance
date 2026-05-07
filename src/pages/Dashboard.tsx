@@ -59,15 +59,15 @@ export const Dashboard = () => {
       <div className="metrics-grid">
         <div className="metric-card">
           <h3>Current Balance</h3>
-          <p className="metric-value">${stats.currentBalance.toFixed(2)}</p>
+          <p className="metric-value">₹{stats.currentBalance.toFixed(2)}</p>
         </div>
         <div className="metric-card">
           <h3>Total Income</h3>
-          <p className="metric-value income">${stats.totalIncome.toFixed(2)}</p>
+          <p className="metric-value income">₹{stats.totalIncome.toFixed(2)}</p>
         </div>
         <div className="metric-card">
           <h3>Total Expenses</h3>
-          <p className="metric-value expense">${stats.totalExpense.toFixed(2)}</p>
+          <p className="metric-value expense">₹{stats.totalExpense.toFixed(2)}</p>
         </div>
         <div className="metric-card">
           <h3>Transactions</h3>
@@ -141,7 +141,7 @@ export const Dashboard = () => {
                   <span className={`type-badge ${tx.type}`}>{tx.type}</span>
                 </td>
                 <td className={tx.type}>
-                  {tx.type === 'income' ? '+' : '-'}${tx.amount.toFixed(2)}
+                  {tx.type === 'income' ? '+' : '-'}₹{tx.amount.toFixed(2)}
                 </td>
               </tr>
             ))}

@@ -267,7 +267,7 @@ export const Transactions = () => {
                     <span className={`type-badge ${tx.type}`}>{tx.type}</span>
                   </td>
                   <td className={tx.type}>
-                    {tx.type === 'income' ? '+' : '-'}${tx.amount.toFixed(2)}
+                    {tx.type === 'income' ? '+' : '-'}₹{tx.amount.toFixed(2)}
                   </td>
                   <td>{tx.note}</td>
                   <td>

@@ -89,11 +89,11 @@ export const Reports = () => {
         <div className="stats-grid">
           <div className="stat-card">
             <h4>Total Income</h4>
-            <p className="stat-value">${statistics.totalIncome.toFixed(2)}</p>
+            <p className="stat-value">₹{statistics.totalIncome.toFixed(2)}</p>
           </div>
           <div className="stat-card">
             <h4>Total Expense</h4>
-            <p className="stat-value">${statistics.totalExpense.toFixed(2)}</p>
+            <p className="stat-value">₹{statistics.totalExpense.toFixed(2)}</p>
           </div>
           <div className="stat-card">
             <h4>Savings Rate</h4>
@@ -101,15 +101,15 @@ export const Reports = () => {
           </div>
           <div className="stat-card">
             <h4>Largest Income</h4>
-            <p className="stat-value">${statistics.largestIncome.toFixed(2)}</p>
+            <p className="stat-value">₹{statistics.largestIncome.toFixed(2)}</p>
           </div>
           <div className="stat-card">
             <h4>Largest Expense</h4>
-            <p className="stat-value">${statistics.largestExpense.toFixed(2)}</p>
+            <p className="stat-value">₹{statistics.largestExpense.toFixed(2)}</p>
           </div>
           <div className="stat-card">
             <h4>Avg Transaction</h4>
-            <p className="stat-value">${statistics.avgTransaction.toFixed(2)}</p>
+            <p className="stat-value">₹{statistics.avgTransaction.toFixed(2)}</p>
           </div>
         </div>
       )}
@@ -136,7 +136,7 @@ export const Reports = () => {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: any) => `$${Number(value).toFixed(2)}`} />
+                <Tooltip formatter={(value: any) => `₹${Number(value).toFixed(2)}`} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -162,7 +162,7 @@ export const Reports = () => {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                <Tooltip formatter={(value: any) => `$${Number(value).toFixed(2)}`} />
+                <Tooltip formatter={(value: any) => `₹${Number(value).toFixed(2)}`} />
               </PieChart>
             </ResponsiveContainer>
           </div>
@@ -177,7 +177,7 @@ export const Reports = () => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="month" />
             <YAxis />
-            <Tooltip formatter={(value: any) => `$${Number(value).toFixed(2)}`} />
+            <Tooltip formatter={(value: any) => `₹${Number(value).toFixed(2)}`} />
             <Legend />
             <Bar dataKey="income" fill="#00C49F" name="Income" />
             <Bar dataKey="expense" fill="#FF8042" name="Expense" />
@@ -193,7 +193,7 @@ export const Reports = () => {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="category" />
             <YAxis />
-            <Tooltip formatter={(value: any) => `$${Number(value).toFixed(2)}`} />
+            <Tooltip formatter={(value: any) => `₹${Number(value).toFixed(2)}`} />
             <Bar dataKey="amount" fill="#FF8042" />
           </BarChart>
         </ResponsiveContainer>
